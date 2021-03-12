@@ -1,0 +1,212 @@
+New Round begins.
+Next turn: Waterball
+    0      1      2      3      4      5      6      7      8      9     10     11     12  
+  C[3]   H[3]   D[4]   C[5]   S[5]   C[8]   D[8]   S[8]   H[9]   S[J]   C[Q]   D[Q]   C[2] 
+Player Waterball plays a FullHouse C[3] H[3] C[8] D[8] S[8].
+Next turn: Chaoyu
+    0      1      2      3      4      5      6      7      8      9     10     11     12  
+  D[3]   S[3]   H[4]   C[6]   H[6]   S[6]   C[9]   D[9]   H[J]   C[K]   D[A]   S[A]   H[2] 
+Invalid play, please try again.
+    0      1      2      3      4      5      6      7      8      9     10     11     12  
+  D[3]   S[3]   H[4]   C[6]   H[6]   S[6]   C[9]   D[9]   H[J]   C[K]   D[A]   S[A]   H[2] 
+Player Chaoyu pass.
+Next turn: CC-Chang
+    0      1      2      3      4      5      6      7      8      9     10     11     12  
+  C[4]   H[7]   S[7]   H[8]   S[9]  C[10]  D[10]   C[J]   D[J]   S[Q]   D[K]   H[A]   S[2] 
+Player CC-Chang pass.
+Next turn: GodTien
+    0      1      2      3      4      5      6      7      8      9     10     11     12  
+  S[4]   D[5]   H[5]   D[6]   C[7]   D[7]  H[10]  S[10]   H[Q]   H[K]   S[K]   C[A]   D[2] 
+Player GodTien pass.
+New Round begins.
+Next turn: Waterball
+    0      1      2      3      4      5      6      7  
+  D[4]   C[5]   S[5]   H[9]   S[J]   C[Q]   D[Q]   C[2] 
+Player Waterball plays a Pair C[5] S[5].
+Next turn: Chaoyu
+    0      1      2      3      4      5      6      7      8      9     10     11     12  
+  D[3]   S[3]   H[4]   C[6]   H[6]   S[6]   C[9]   D[9]   H[J]   C[K]   D[A]   S[A]   H[2] 
+Player Chaoyu plays a Pair C[9] D[9].
+Next turn: CC-Chang
+    0      1      2      3      4      5      6      7      8      9     10     11     12  
+  C[4]   H[7]   S[7]   H[8]   S[9]  C[10]  D[10]   C[J]   D[J]   S[Q]   D[K]   H[A]   S[2] 
+Player CC-Chang plays a Pair C[10] D[10].
+Next turn: GodTien
+    0      1      2      3      4      5      6      7      8      9     10     11     12  
+  S[4]   D[5]   H[5]   D[6]   C[7]   D[7]  H[10]  S[10]   H[Q]   H[K]   S[K]   C[A]   D[2] 
+Player GodTien plays a Pair H[K] S[K].
+Next turn: Waterball
+    0      1      2      3      4      5  
+  D[4]   H[9]   S[J]   C[Q]   D[Q]   C[2] 
+Player Waterball pass.
+Next turn: Chaoyu
+    0      1      2      3      4      5      6      7      8      9     10  
+  D[3]   S[3]   H[4]   C[6]   H[6]   S[6]   H[J]   C[K]   D[A]   S[A]   H[2] 
+Player Chaoyu plays a Pair D[A] S[A].
+Next turn: CC-Chang
+    0      1      2      3      4      5      6      7      8      9     10  
+  C[4]   H[7]   S[7]   H[8]   S[9]   C[J]   D[J]   S[Q]   D[K]   H[A]   S[2] 
+Player CC-Chang pass.
+Next turn: GodTien
+    0      1      2      3      4      5      6      7      8      9     10  
+  S[4]   D[5]   H[5]   D[6]   C[7]   D[7]  H[10]  S[10]   H[Q]   C[A]   D[2] 
+Player GodTien pass.
+Next turn: Waterball
+    0      1      2      3      4      5  
+  D[4]   H[9]   S[J]   C[Q]   D[Q]   C[2] 
+Player Waterball pass.
+New Round begins.
+Next turn: Chaoyu
+    0      1      2      3      4      5      6      7      8  
+  D[3]   S[3]   H[4]   C[6]   H[6]   S[6]   H[J]   C[K]   H[2] 
+Player Chaoyu plays a FullHouse D[3] S[3] C[6] H[6] S[6].
+Next turn: CC-Chang
+    0      1      2      3      4      5      6      7      8      9     10  
+  C[4]   H[7]   S[7]   H[8]   S[9]   C[J]   D[J]   S[Q]   D[K]   H[A]   S[2] 
+Player CC-Chang pass.
+Next turn: GodTien
+    0      1      2      3      4      5      6      7      8      9     10  
+  S[4]   D[5]   H[5]   D[6]   C[7]   D[7]  H[10]  S[10]   H[Q]   C[A]   D[2] 
+Player GodTien pass.
+Next turn: Waterball
+    0      1      2      3      4      5  
+  D[4]   H[9]   S[J]   C[Q]   D[Q]   C[2] 
+Player Waterball pass.
+New Round begins.
+Next turn: Chaoyu
+    0      1      2      3  
+  H[4]   H[J]   C[K]   H[2] 
+Player Chaoyu plays a Single H[4].
+Next turn: CC-Chang
+    0      1      2      3      4      5      6      7      8      9     10  
+  C[4]   H[7]   S[7]   H[8]   S[9]   C[J]   D[J]   S[Q]   D[K]   H[A]   S[2] 
+Player CC-Chang plays a Single H[8].
+Next turn: GodTien
+    0      1      2      3      4      5      6      7      8      9     10  
+  S[4]   D[5]   H[5]   D[6]   C[7]   D[7]  H[10]  S[10]   H[Q]   C[A]   D[2] 
+Player GodTien plays a Single H[Q].
+Next turn: Waterball
+    0      1      2      3      4      5  
+  D[4]   H[9]   S[J]   C[Q]   D[Q]   C[2] 
+Player Waterball plays a Single C[2].
+Next turn: Chaoyu
+    0      1      2  
+  H[J]   C[K]   H[2] 
+Player Chaoyu plays a Single H[2].
+Next turn: CC-Chang
+    0      1      2      3      4      5      6      7      8      9  
+  C[4]   H[7]   S[7]   S[9]   C[J]   D[J]   S[Q]   D[K]   H[A]   S[2] 
+Player CC-Chang plays a Single S[2].
+Next turn: GodTien
+    0      1      2      3      4      5      6      7      8      9  
+  S[4]   D[5]   H[5]   D[6]   C[7]   D[7]  H[10]  S[10]   C[A]   D[2] 
+Player GodTien pass.
+Next turn: Waterball
+    0      1      2      3      4  
+  D[4]   H[9]   S[J]   C[Q]   D[Q] 
+Player Waterball pass.
+Next turn: Chaoyu
+    0      1  
+  H[J]   C[K] 
+Player Chaoyu pass.
+New Round begins.
+Next turn: CC-Chang
+    0      1      2      3      4      5      6      7      8  
+  C[4]   H[7]   S[7]   S[9]   C[J]   D[J]   S[Q]   D[K]   H[A] 
+Player CC-Chang plays a Pair H[7] S[7].
+Next turn: GodTien
+    0      1      2      3      4      5      6      7      8      9  
+  S[4]   D[5]   H[5]   D[6]   C[7]   D[7]  H[10]  S[10]   C[A]   D[2] 
+Player GodTien plays a Pair H[10] S[10].
+Next turn: Waterball
+    0      1      2      3      4  
+  D[4]   H[9]   S[J]   C[Q]   D[Q] 
+Player Waterball plays a Pair C[Q] D[Q].
+Next turn: Chaoyu
+    0      1  
+  H[J]   C[K] 
+Player Chaoyu pass.
+Next turn: CC-Chang
+    0      1      2      3      4      5      6  
+  C[4]   S[9]   C[J]   D[J]   S[Q]   D[K]   H[A] 
+Player CC-Chang pass.
+Next turn: GodTien
+    0      1      2      3      4      5      6      7  
+  S[4]   D[5]   H[5]   D[6]   C[7]   D[7]   C[A]   D[2] 
+Player GodTien pass.
+New Round begins.
+Next turn: Waterball
+    0      1      2  
+  D[4]   H[9]   S[J] 
+Player Waterball plays a Single D[4].
+Next turn: Chaoyu
+    0      1  
+  H[J]   C[K] 
+Player Chaoyu plays a Single H[J].
+Next turn: CC-Chang
+    0      1      2      3      4      5      6  
+  C[4]   S[9]   C[J]   D[J]   S[Q]   D[K]   H[A] 
+Player CC-Chang plays a Single S[Q].
+Next turn: GodTien
+    0      1      2      3      4      5      6      7  
+  S[4]   D[5]   H[5]   D[6]   C[7]   D[7]   C[A]   D[2] 
+Player GodTien plays a Single D[2].
+Next turn: Waterball
+    0      1  
+  H[9]   S[J] 
+Player Waterball pass.
+Next turn: Chaoyu
+    0  
+  C[K] 
+Player Chaoyu pass.
+Next turn: CC-Chang
+    0      1      2      3      4      5  
+  C[4]   S[9]   C[J]   D[J]   D[K]   H[A] 
+Player CC-Chang pass.
+New Round begins.
+Next turn: GodTien
+    0      1      2      3      4      5      6  
+  S[4]   D[5]   H[5]   D[6]   C[7]   D[7]   C[A] 
+Player GodTien plays a Pair D[5] H[5].
+Next turn: Waterball
+    0      1  
+  H[9]   S[J] 
+Player Waterball pass.
+Next turn: Chaoyu
+    0  
+  C[K] 
+Player Chaoyu pass.
+Next turn: CC-Chang
+    0      1      2      3      4      5  
+  C[4]   S[9]   C[J]   D[J]   D[K]   H[A] 
+Player CC-Chang plays a Pair C[J] D[J].
+Next turn: GodTien
+    0      1      2      3      4  
+  S[4]   D[6]   C[7]   D[7]   C[A] 
+Player GodTien pass.
+Next turn: Waterball
+    0      1  
+  H[9]   S[J] 
+Player Waterball pass.
+Next turn: Chaoyu
+    0  
+  C[K] 
+Player Chaoyu pass.
+New Round begins.
+Next turn: CC-Chang
+    0      1      2      3  
+  C[4]   S[9]   D[K]   H[A] 
+Player CC-Chang plays a Single C[4].
+Next turn: GodTien
+    0      1      2      3      4  
+  S[4]   D[6]   C[7]   D[7]   C[A] 
+Player GodTien plays a Single S[4].
+Next turn: Waterball
+    0      1  
+  H[9]   S[J] 
+Player Waterball plays a Single H[9].
+Next turn: Chaoyu
+    0  
+  C[K] 
+Player Chaoyu plays a Single C[K].
+Game over, the winner is Chaoyu.
