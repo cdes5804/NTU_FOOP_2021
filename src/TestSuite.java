@@ -16,7 +16,7 @@ public class TestSuite {
             System.out.println("You must provide the test name as the first argument.");
         }
         String testName = args[0];
-        System.out.printf("# Test: %s\n\n", testName);
+        System.out.printf("\n\n########### Test: %s ######################\n\n", testName);
         setupIO(testName);
         Main.main(new String[0]);
         judge();
@@ -32,17 +32,21 @@ public class TestSuite {
 
     private static void judge() {
         String actualOutput = programOutput.toString();
-        System.setOut(stdOut);
+        System.setOut(stdOut);  // restore back to the standard output
         String[] actualOutputLines = actualOutput.stripTrailing().split("\n");
         String[] expectedOutputLines = expectedOutput.stripTrailing().split("\n");
         boolean allCorrect = compareLineByLine(actualOutputLines, expectedOutputLines);
         if (allCorrect) {
             System.out.println("All Correct!");
+            System.exit(1);
+        } else {
+            System.exit(-1);
         }
     }
 
     private static boolean compareLineByLine(String[] actualOutputLines, String[] expectedOutputLines) {
-        for (int i = 0; i < expectedOutputLines.length; i++) {
+        int n = Math.min(expectedOutputLines.length, actualOutputLines.length);
+        for (int i = 0; i < n; i++) {
             String actual = actualOutputLines[i].stripTrailing();
             String expected = expectedOutputLines[i].stripTrailing();
             if (!actual.equals(expected)) {
@@ -54,6 +58,10 @@ public class TestSuite {
             printTestReport(actualOutputLines, expectedOutputLines, expectedOutputLines.length+1);
             return false;
         }
+        if (expectedOutputLines.length > actualOutputLines.length) {
+            printTestReport(actualOutputLines, expectedOutputLines, actualOutputLines.length+1);
+            return false;
+        }
         return true;
     }
 
@@ -62,9 +70,8 @@ public class TestSuite {
         printWithLineNumbers(errorLine, expectedOutputLines);
         System.out.println("\n======== Actual Output ========");
         printWithLineNumbers(errorLine, actualOutputLines);
-
         System.err.printf("\nWrong answer, the difference starts at line %d.\n", errorLine);
-        if (errorLine <= actualOutputLines.length && actualOutputLines.length <= expectedOutputLines.length) {
+        if (errorLine <= Math.min(expectedOutputLines.length, actualOutputLines.length)) {
             System.err.printf("Expected: %s\n  Actual: %s\n",
                     expectedOutputLines[errorLine - 1].stripTrailing(),
                     actualOutputLines[errorLine - 1].stripTrailing());
@@ -73,7 +80,7 @@ public class TestSuite {
 
     private static void printWithLineNumbers(int errorLine, String[] lines) {
         for (int i = 1; i <= lines.length; i++) {
-            String line = errorLine == i ? "*"+i : String.valueOf(i);
+            String line = errorLine == i ? "*" + i : String.valueOf(i);
             System.out.printf("%4s| %s\n", line, lines[i - 1]);
         }
     }

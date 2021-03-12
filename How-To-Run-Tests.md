@@ -1,5 +1,11 @@
 # How To Run Tests
 
+TL;DR
+===
+Run `bash test.sh`
+
+Manual Steps
+===
 Follow the steps below under your project directory:
 1. `cd src`
 2. `javac TestSuite.java -d ../out/`

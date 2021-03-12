@@ -381,18 +381,18 @@ to consume and parse the input from the standard in.
 ## Grading
 
 - Grading:
-    - Program Correctness:
+    - **Program Correctness**:
         - Four test cases:
             - always-play-first-card [13%]
             - normal-no-error-play1 [16%]
             - normal-no-error-play2 [16%]
             - illegal-actions [30%]
-    - Software design [20%]
-    - Bonus Test case:
+    - **Software design** [20%]
+    - **Bonus Test case**:
         - straight [6%]: Extend your big-2 game with Straight card pattern.
         - fullhouse [6%]: Extend your big-2 game with FullHouse card pattern.
-    - Bonus Design:
-        - Open-Close principle (OCP) [15%]: "Your software should be open for extension, but closed for modification." 
+    - **Bonus Design**:
+        - **Open-Close principle (OCP)** [15%]: "Your software should be open for extension, but closed for modification." 
           Let's say your client asks you to extend the big-2 game with new card patterns. Can you support his requirement 
           in such a way that "you only need to write new classes, 
           without any modifications to the previously existing classes (except Main, we typically call the Main class 'the Client')"?
