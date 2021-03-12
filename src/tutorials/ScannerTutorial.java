@@ -28,6 +28,5 @@ public class ScannerTutorial {
 
         System.out.println(scanner.nextLine()); // "line1"
         System.out.println(scanner.nextLine()); // "line2"
-
     }
 }

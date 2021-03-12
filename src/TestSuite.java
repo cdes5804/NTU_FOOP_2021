@@ -38,7 +38,6 @@ public class TestSuite {
         boolean allCorrect = compareLineByLine(actualOutputLines, expectedOutputLines);
         if (allCorrect) {
             System.out.println("All Correct!");
-            System.exit(1);
         } else {
             System.exit(-1);
         }
