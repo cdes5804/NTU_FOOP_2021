@@ -392,7 +392,7 @@ to consume and parse the input from the standard in.
         - straight [8%]: Extend your big-2 game with Straight card pattern.
         - fullhouse [8%]: Extend your big-2 game with FullHouse card pattern.
     - **Bonus Design**:
-        - **Open-Close principle (OCP)** [15%]: "Your software should be open for extension, but closed for modification." 
+        - **Open-Close principle (OCP)** [14%]: "Your software should be open for extension, but closed for modification." 
           Let's say your client asks you to extend the big-2 game with new card patterns. Can you support his requirement 
           in such a way that "you only need to write new classes, 
           without any modifications to the previously existing classes (except Main, we typically call the Main class 'the Client')"?
