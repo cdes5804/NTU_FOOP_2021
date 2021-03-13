@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ListsTutorial {
+public class ListTutorial {
     public static void main(String[] args) {
         // ArrayList is a type of List
         List<String> numbers = new ArrayList<>();  // or `new LinkedList<>()`

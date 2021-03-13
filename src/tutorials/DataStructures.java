@@ -1,5 +1,10 @@
 package tutorials;
 
+/**
+ * Some basic data structure implementation in Java.
+ * You can also learn Generic Type <T> here.
+ */
+
 class Stack<T> {
     private final int MAX_SIZE;
     private int top = -1;
