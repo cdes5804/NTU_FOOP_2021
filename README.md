@@ -389,8 +389,8 @@ to consume and parse the input from the standard in.
             - illegal-actions [30%]
     - **Software design** [25%]
     - **Bonus Test case**:
-        - straight [6%]: Extend your big-2 game with Straight card pattern.
-        - fullhouse [6%]: Extend your big-2 game with FullHouse card pattern.
+        - straight [8%]: Extend your big-2 game with Straight card pattern.
+        - fullhouse [8%]: Extend your big-2 game with FullHouse card pattern.
     - **Bonus Design**:
         - **Open-Close principle (OCP)** [15%]: "Your software should be open for extension, but closed for modification." 
           Let's say your client asks you to extend the big-2 game with new card patterns. Can you support his requirement 
