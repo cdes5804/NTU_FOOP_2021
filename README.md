@@ -387,7 +387,7 @@ to consume and parse the input from the standard in.
             - normal-no-error-play1 [16%]
             - normal-no-error-play2 [16%]
             - illegal-actions [30%]
-    - **Software design** [20%]
+    - **Software design** [25%]
     - **Bonus Test case**:
         - straight [6%]: Extend your big-2 game with Straight card pattern.
         - fullhouse [6%]: Extend your big-2 game with FullHouse card pattern.
