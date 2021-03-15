@@ -167,7 +167,7 @@ spaces)** to select which cards to play from his **ordered hand-cards** or **-1*
   C[3]   D[3]   H[4]   H[5]     ...
 ```
 
-The hand-cards should be ordered (ascending, see [(R9) Ordering Rules](#user-content-r9-ordering-rules).
+The hand-cards should be ordered (ascending, see [(R9) Ordering Rules](#user-content-r9-ordering-rules)).
 
 * If the player plays legally, print `Player <player's name> plays a <card pattern> <suit>[<rank>]  
   <suit>[<rank>]  <suit>[<rank>]...`. Otherwise, print `Invalid play, please try again.`
