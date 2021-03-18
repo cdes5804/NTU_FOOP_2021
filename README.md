@@ -94,8 +94,8 @@ noodle-oriented way.
 * (R5) After the player has played, he loses the cards he played from his hand-cards, the play is set as the current
   top-play, and the player becomes the top-player.
 
-* (R6) Every player continues to play, until there are 3 players pass in a row. If so, the current round ends, and a *
-  new round* begins, with the top-play removed and then the
+* (R6) Every player continues to play, until there are 3 players pass in a row. If so, the current round ends, and a 
+  *new round* begins, with the top-play removed and then the
   *top-player* takes the first turn.
 
 > For example, if you play a 2 and other three players pass in a row, then a new round begins.
@@ -152,14 +152,14 @@ deal a card from the top.
 After, below the first line, there will be four lines of player's names.
 
 Finally, a sequence of player's actions: Each line is an action which is either a **selection indices (split by
-spaces)** to select which cards to play from his sorted hand-cards or **-1** stands for 'Pass'.
+spaces)** to select which cards to play from his **ordered hand-cards** or **-1** stands for 'Pass'.
 
 ### Output Format
 
 > Every white space in our output is exactly the ' ' instead of '\t'
 
 * Print `New Round begins.` when a new round begins.
-* At every turn, first print `Next turn: <player's name>` and then print the player's **sorted**
+* At every turn, first print `Next turn: <player's name>` and then print the player's **ordered**
   hand-cards in a pretty format as follows:
 
 ```
@@ -167,7 +167,7 @@ spaces)** to select which cards to play from his sorted hand-cards or **-1** sta
   C[3]   D[3]   H[4]   H[5]     ...
 ```
 
-The hand-cards should be sorted by the card's orders (ascending).
+The hand-cards should be ordered (ascending, see [(R9) Ordering Rules](#user-content-r9-ordering-rules)).
 
 * If the player plays legally, print `Player <player's name> plays a <card pattern> <suit>[<rank>]  
   <suit>[<rank>]  <suit>[<rank>]...`. Otherwise, print `Invalid play, please try again.`
