@@ -2,24 +2,8 @@ package tutorials;
 
 // You can find the details here
 // https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html
-public class PrintfTutorial {
+public class FormattingTutorial {
     public static void main(String[] args) {
-        // You can align your format like this
-        //     0      1      2      3      4      5      6      7      8      9     10
-        //   A[1]  B[20]   C[3]  D[40]   E[5]   F[7]   G[0]   H[7]   I[9]  J[10]  K[88]
-        String[] names = {"A[1]", "B[20]", "C[3]", "D[40]", "E[5]", "F[7]", "G[0]", "H[7]", "I[9]", "J[10]", "K[88]"};
-        for (int i = 0; i < names.length; i++) {
-            // specify the width=2 to accommodate different numbers of digits
-            System.out.printf("   %2d  ", i);
-        }
-        System.out.println();
-        for (String name : names) {
-            // specify the width=5 to accommodate different lengths of strings
-            System.out.printf(" %5s ", name);
-        }
-        System.out.println();
-
-
         // Print numbers and strings
         int id = 20;
         String name = "Waterball";
@@ -38,5 +22,11 @@ public class PrintfTutorial {
         // Argument index
         // You can specify the argument index as %<index>$<notation>
         System.out.printf("%5$d, %4$d, %3$d, %2$d, %1$d\n", 1, 2, 3, 4, 5); // 5, 4, 3, 2, 1\n
+
+        // Alignment, you can align the content with the field's width
+        // Positive width: left alignment, Negative width: right alignment
+        // |  1| 20|300|400|50 |6  |
+        System.out.printf("|%3d|%3d|%3d|%-3d|%-3d|%-3d|\n", 1, 20, 300, 400, 50, 6);
+
     }
 }
