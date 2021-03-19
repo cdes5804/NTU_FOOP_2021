@@ -163,8 +163,8 @@ spaces)** to select which cards to play from his **ordered hand-cards** or **-1*
   hand-cards in a pretty format as follows:
 
 ```
-    0      1      2      3      ...
-  C[3]   D[3]   H[4]   H[5]     ...
+    0    1    2    3   ...
+    C[3] D[3] H[4] H[5]  ...
 ```
 
 The hand-cards should be ordered (ascending, see [(R9) Ordering Rules](#user-content-r9-ordering-rules)).
@@ -435,20 +435,20 @@ Game over, the winner is GodTien.
 to consume and parse the input from the standard in.
 
 ## Grading
-
+This homework set comes with 200 points and 20 bonus points.
 - Grading:
-    - **Program Correctness**:
-        - Four test cases:
-            - always-play-first-card [13%]
-            - normal-no-error-play1 [16%]
-            - normal-no-error-play2 [16%]
-            - illegal-actions [30%]
-    - **Software design** [25%]
-    - **Bonus Test case**:
-        - straight [8%]: Extend your big-2 game with Straight card pattern.
-        - fullhouse [8%]: Extend your big-2 game with FullHouse card pattern.
-    - **Bonus Design**:
-        - **Open-Close principle (OCP)** [14%]: "Your software should be open for extension, but closed for modification." 
+    - **Program Correctness** [each 20%]:
+        - public test case 1: always-play-first-card (single)
+        - public test case 2: normal-no-error (single + pair)
+        - public test case 3: normal-no-error (single + pair)
+        - public test case 4: illegal-actions (single + pair)
+        - public test case 5: anything (single + pair + straight)
+        - public test case 6: anything (single + pair + straight + full house)
+        - public test case 7: anything (single + pair + straight + full house)
+        - public test case 8: anything (single + pair + straight + full house)
+    - **Software Design** [40%]
+    - **Bonus Software Design** [bonus 20%]:
+        - **Open-Close principle (OCP)** : "Your software should be open for extension, but closed for modification." 
           Let's say your client asks you to extend the big-2 game with new card patterns. Can you support his requirement 
           in such a way that "you only need to write new classes, 
           without any modifications to the previously existing classes (except Main, we typically call the Main class 'the Client')"?
