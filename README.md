@@ -444,8 +444,8 @@ This homework set comes with 200 points and 20 bonus points.
         - public test case 4: illegal-actions (single + pair)
         - public test case 5: anything (single + pair + straight)
         - public test case 6: anything (single + pair + straight + full house)
-        - public test case 7: anything (single + pair + straight + full house)
-        - public test case 8: anything (single + pair + straight + full house)
+        - private test case 7: anything (single + pair + straight + full house)
+        - private test case 8: anything (single + pair + straight + full house)
     - **Software Design** [40%]
     - **Bonus Software Design** [bonus 20%]:
         - **Open-Close principle (OCP)** : "Your software should be open for extension, but closed for modification." 
