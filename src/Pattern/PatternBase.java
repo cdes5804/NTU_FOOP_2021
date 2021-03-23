@@ -6,20 +6,10 @@ import Entity.Card;
 /**
  * The base class for all card patterns in Big-2
  */
-public abstract class PatternBase {
-    private List<Card> cards;
-    /**
-     * Compare the order of two plays of the same pattern.
-     * 
-     * @param A a play of the same pattern.
-     * @return true if the play has higher order than the one passed as parameter, otherwise false.
-     */
-    abstract public boolean biggerThan();
+public abstract class PatternBase implements Comparable<PatternBase> {
+    public List<Card> cards;
 
-    /**
-     * Check if the given cards form a valid pattern.
-     * 
-     * @return true if the given cards form a valid patten, otherwise false.
-     */
-    abstract protected boolean isValidPattern();
+    public PatternBase(List<Card> cards) {
+        this.cards = cards;
+    }
 }

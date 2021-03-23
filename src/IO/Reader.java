@@ -1,6 +1,8 @@
 package IO;
 
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Reader {
     private final static Scanner _scanner = new Scanner(System.in);
@@ -27,5 +29,22 @@ public class Reader {
         }
 
         return card;
+    }
+
+    public static List<Integer> readPlay() {
+        List<Integer> play = new ArrayList<Integer>();
+        String line = "";
+
+        while (isEmptyOrSpace(line)) {
+            line = _scanner.nextLine();
+        }
+        
+        String[] nums = line.trim().split("\\s+");
+
+        for (int i = 0; i < nums.length; ++i) {
+            play.add(Integer.parseInt(nums[i]));
+        }
+
+        return play;
     }
 }

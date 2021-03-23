@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class Card {
     public static enum Rank {
-        TREY("3"), FOUR("4"), FIVE("5"), SIX("6"),
+        THREE("3"), FOUR("4"), FIVE("5"), SIX("6"),
         SEVEN("7"), EIGHT("8"), NINE("9"), TEN("10"),
         JACK("J"), QUEEN("Q"), KING("K"), ACE("A"),
         DEUCE("2");
@@ -27,7 +27,7 @@ public class Card {
             return _rankString;
         }
 
-        public static final Rank getRankFromString(String rankString) {
+        public static final Rank getRankFromString(String rankString) throws IllegalArgumentException {
             for (Rank rank : Rank.values) {
                 if (rank.getRankString().equals(rankString)) {
                     return rank;
@@ -52,7 +52,7 @@ public class Card {
             return _suitString;
         }
 
-        public static final Suit getSuitFromString(String suitString) {
+        public static final Suit getSuitFromString(String suitString) throws IllegalArgumentException {
             for (Suit suit : Suit.values) {
                 if (suit.getSuitString().equals(suitString)) {
                     return suit;
@@ -62,8 +62,8 @@ public class Card {
         }
     }
 
-    private Rank _rank;
-    private Suit _suit;
+    private final Rank _rank;
+    private final Suit _suit;
 
     public Card(String cardString) {
         String suit = cardString.substring(0, 1);
@@ -91,6 +91,11 @@ public class Card {
         }
 
         return new Card.CardComparator().compare(this, (Card)o) == 0;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s[%s]", _suit.getSuitString(), _rank.getRankString());
     }
 
     public static class CardComparator implements Comparator<Card> {

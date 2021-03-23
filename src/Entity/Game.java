@@ -1,15 +1,17 @@
 package Entity;
 
+import IO.Reader;
+import IO.Writer;
 import java.util.List;
 import java.util.ArrayList;
-import IO.Reader;
+import java.util.Collections;
 
 /**
  * A game of Big-2
  */
 public class Game {
     private final int NUMBER_OF_PLAYERS = 4;
-    private final int NUMBER_OF_CARDS = 4;
+    private final int NUMBER_OF_CARDS = 52;
     private final Card _startCard;
     private final List<Player> _players;
     private int _startPlayer;
@@ -21,7 +23,6 @@ public class Game {
     }
 
     public void start() {
-        System.out.println("New Round begins.");
         List<Card> deck = getDeck();
         getPlayers();
 
@@ -34,12 +35,18 @@ public class Game {
         }
 
         while (true) {
-            Round round = new Round();
+            Writer.writeRoundBegin();
+            Round round = new Round(_players);
             round.start(_startPlayer);
+            _startPlayer = round.lastPlayer;
+
             if (round.hasWinner) {
                 break;
             }
         }
+
+        int winner = _startPlayer;
+        Writer.writeWinner(_players.get(winner));
     }
 
     private void getPlayers() {
@@ -56,6 +63,8 @@ public class Game {
             String cardString = Reader.readCard();
             deck.add(new Card(cardString));
         }
+
+        Collections.reverse(deck);
 
         return deck;
     }

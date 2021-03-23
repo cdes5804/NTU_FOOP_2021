@@ -10,3 +10,4 @@ java -cp out/ TestSuite normal-no-error-play2 && \
 java -cp out/ TestSuite illegal-actions && \
 java -cp out/ TestSuite straight && \
 java -cp out/ TestSuite fullhouse
+
