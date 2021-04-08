@@ -27,7 +27,7 @@ public class Player {
         handCards.add(index, card);
     }
 
-    public PatternBase play(PatternBase topPlay) {
+    public PatternBase play(PatternBase topPlay, PatternFactory patternFactory) {
         PatternBase pattern = null;
 
         while (true) {
@@ -54,11 +54,11 @@ public class Player {
             List<Card> cards = new ArrayList<Card>();
 
             for (int index : indices) {
-
                 cards.add(handCards.get(index));
             }
 
-            pattern = PatternFactory.genPattern(cards);
+            pattern = patternFactory.genPattern(cards);
+
             if (pattern != null && isValidPlay(topPlay, pattern)) {
                 Writer.writeValidPlay(this, pattern);
                 removeCards(indices);
@@ -75,12 +75,16 @@ public class Player {
         return pattern;
     }
 
-    private static boolean isPass(List<Integer> indices) {
+    private boolean isPass(List<Integer> indices) {
         return indices.size() == 1 && indices.get(0) == -1;
     }
 
-    private static boolean isValidPlay(PatternBase prev, PatternBase curr) {
+    private boolean isValidPlay(PatternBase prev, PatternBase curr) {
+        Card startingCard = new Card("C[3]");
+
         if (curr == null) {
+            return false;
+        } else if (!curr.cards.contains(startingCard) && handCards.contains(startingCard)) {
             return false;
         } else if (prev == null) {
             return true;

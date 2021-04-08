@@ -2,6 +2,7 @@ package Entity;
 
 import IO.Reader;
 import IO.Writer;
+import Pattern.PatternFactory;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,11 +15,13 @@ public class Game {
     private final int NUMBER_OF_CARDS = 52;
     private final Card _startCard;
     private final List<Player> _players;
+    private final PatternFactory _patternFactory;
     private int _startPlayer;
 
-    public Game() {
+    public Game(PatternFactory patternFactory) {
         _players = new ArrayList<Player>(NUMBER_OF_PLAYERS);
         _startCard = new Card("C[3]");
+        _patternFactory = patternFactory;
         _startPlayer = -1;
     }
 
@@ -37,7 +40,7 @@ public class Game {
         while (true) {
             Writer.writeRoundBegin();
             Round round = new Round(_players);
-            round.start(_startPlayer);
+            round.start(_startPlayer, _patternFactory);
             _startPlayer = round.lastPlayer;
 
             if (round.hasWinner) {

@@ -41,8 +41,8 @@ public class Reader {
         
         String[] nums = line.trim().split("\\s+");
 
-        for (int i = 0; i < nums.length; ++i) {
-            play.add(Integer.parseInt(nums[i]));
+        for (String num : nums) {
+            play.add(Integer.parseInt(num));
         }
 
         return play;

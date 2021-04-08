@@ -4,8 +4,22 @@ import Entity.Card;
 import java.util.List;
 
 public final class Pair extends PatternBase {
-    public Pair(List<Card> cards) {
+    public Pair() {
+        super();
+    }
+
+    private Pair(List<Card> cards) {
         super(cards);
+    }
+
+    @Override
+    public Pair construct(List<Card> cards) {
+        return new Pair(cards);
+    }
+
+    @Override
+    public boolean isValidPattern(List<Card> cards) {
+        return cards.size() == 2 && PatternUtils.isSameRank(cards);
     }
 
     @Override

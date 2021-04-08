@@ -4,8 +4,25 @@ import Entity.Card;
 import java.util.List;
 
 public final class FullHouse extends PatternBase {
-    public FullHouse(List<Card> cards) {
+    public FullHouse() {
+        super();
+    }
+
+    private FullHouse(List<Card> cards) {
         super(cards);
+    }
+
+    @Override
+    public FullHouse construct(List<Card> cards) {
+        return new FullHouse(cards);
+    }
+
+    @Override
+    public boolean isValidPattern(List<Card> cards) {
+        return cards.size() == 5 && (
+            (PatternUtils.isSameRank(cards.subList(0, 2)) && PatternUtils.isSameRank(cards.subList(2, 5))) ||
+            (PatternUtils.isSameRank(cards.subList(0, 3)) && PatternUtils.isSameRank(cards.subList(3, 5)))
+        );
     }
     
     @Override
