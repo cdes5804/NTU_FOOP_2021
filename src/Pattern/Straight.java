@@ -3,6 +3,10 @@ package Pattern;
 import Entity.Card;
 import java.util.List;
 
+/**
+ * The straight pattern in big two.
+ * Along with the comparator to compare the rank between two straights.
+ */
 public final class Straight extends PatternBase {
     public Straight(List<Card> cards) {
         super(cards);

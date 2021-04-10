@@ -3,6 +3,10 @@ package Pattern;
 import Entity.Card;
 import java.util.List;
 
+/**
+ * The single pattern in big two.
+ * Along with the comparator to compare the rank between two singles.
+ */
 public final class Single extends PatternBase {
     public Single(List<Card> cards) {
         super(cards);

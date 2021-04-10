@@ -8,31 +8,35 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * A player in a game with the action a player can take.
+ */
 public class Player {
     public final String name;
-    public boolean finished;
-    public final List<Card> handCards;
+    public boolean isHandCardEmpty;
+    private final List<Card> _handCards;
 
     public Player(String name) {
         this.name = name;
-        this.finished = false;
-        handCards = new ArrayList<Card>();
+        isHandCardEmpty = true;
+        _handCards = new ArrayList<Card>();
     }
 
     public void draw(Card card) {
-        int index = Collections.binarySearch(handCards, card, new Card.CardComparator());
+        int index = Collections.binarySearch(_handCards, card, new Card.CardComparator());
         if (index < 0) {
             index = -index - 1;
         }
-        handCards.add(index, card);
+        _handCards.add(index, card);
+        isHandCardEmpty = false;
     }
 
-    public PatternBase play(PatternBase topPlay, PatternFactory patternFactory) {
+    public PatternBase play(PatternBase topPlay, PatternFactory patternFactory, Card startingCard) {
         PatternBase pattern = null;
 
         while (true) {
             pattern = null;
-            Writer.writePlayerHandCards(this);
+            Writer.writePlayerHandCards(_handCards);
             List<Integer> indices = Reader.readPlay();
             Collections.sort(indices);
 
@@ -46,7 +50,7 @@ public class Player {
                 }
             }
 
-            if (indices.stream().anyMatch(index -> index >= handCards.size())) {
+            if (indices.stream().anyMatch(index -> index >= _handCards.size())) {
                 Writer.writeInvalidPlay();
                 continue;
             }
@@ -54,17 +58,17 @@ public class Player {
             List<Card> cards = new ArrayList<Card>();
 
             for (int index : indices) {
-                cards.add(handCards.get(index));
+                cards.add(_handCards.get(index));
             }
 
             pattern = patternFactory.genPattern(cards);
 
-            if (pattern != null && isValidPlay(topPlay, pattern)) {
+            if (pattern != null && isValidPlay(topPlay, pattern, startingCard)) {
                 Writer.writeValidPlay(this, pattern);
                 removeCards(indices);
 
-                if (handCards.isEmpty()) {
-                    finished = true;
+                if (_handCards.isEmpty()) {
+                    isHandCardEmpty = true;
                 }
                 break;
             }
@@ -79,12 +83,10 @@ public class Player {
         return indices.size() == 1 && indices.get(0) == -1;
     }
 
-    private boolean isValidPlay(PatternBase prev, PatternBase curr) {
-        Card startingCard = new Card("C[3]");
-
+    private boolean isValidPlay(PatternBase prev, PatternBase curr, Card startingCard) {
         if (curr == null) {
             return false;
-        } else if (!curr.cards.contains(startingCard) && handCards.contains(startingCard)) {
+        } else if (startingCard != null && !curr.cards.contains(startingCard) && _handCards.contains(startingCard)) {
             return false;
         } else if (prev == null) {
             return true;
@@ -98,7 +100,7 @@ public class Player {
     private void removeCards(List<Integer> indices) {
         Collections.reverse(indices);
         for (int index : indices) {
-            handCards.remove(index);
+            _handCards.remove(index);
         }
     }
 }

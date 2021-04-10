@@ -3,6 +3,9 @@ package Pattern.Factory;
 import Entity.Card;
 import java.util.List;
 
+/**
+ * Utility functions used by factories to help identify a pattern.
+ */
 public class FactoryUtils {
     public static boolean isSameRank(List<Card> cards) {
         int numberOfCards = cards.size();

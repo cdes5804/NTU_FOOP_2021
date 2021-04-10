@@ -4,6 +4,9 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Reader is responsible for all input.
+ */
 public class Reader {
     private final static Scanner _scanner = new Scanner(System.in);
 

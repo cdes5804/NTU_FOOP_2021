@@ -3,6 +3,10 @@ package Pattern;
 import Entity.Card;
 import java.util.List;
 
+/**
+ * The pair pattern in big two.
+ * Along with the comparator to compare the rank between two pairs.
+ */
 public final class Pair extends PatternBase {
     public Pair(List<Card> cards) {
         super(cards);

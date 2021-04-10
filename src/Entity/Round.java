@@ -5,22 +5,28 @@ import Pattern.PatternBase;
 import Pattern.Factory.PatternFactory;
 import java.util.List;
 
+/**
+ * A round consists of serveral actions from the players.
+ * A round ends when there are three consecutive passes.
+ */
 public class Round {
     public boolean hasWinner;
     public int lastPlayer;
     private List<Player> _players;
     private int _passCount;
     private PatternBase _topPlay;
+    private PatternFactory _patternFactory;
 
-    public Round(List<Player> players) {
+    public Round(List<Player> players, PatternFactory patternFactory) {
         hasWinner = false;
         lastPlayer = -1;
         _players = players;
         _passCount = 0;
         _topPlay = null;
+        _patternFactory = patternFactory;
     }
 
-    public void start(int startPlayer, PatternFactory patternFactory) {
+    public void start(int startPlayer, Card startingCard) {
         int numberOfPlayers = _players.size();
         int currentPlayer = startPlayer;
 
@@ -29,7 +35,7 @@ public class Round {
 
             Writer.writePlayerTurn(player);
 
-            PatternBase play = player.play(_topPlay, patternFactory);
+            PatternBase play = player.play(_topPlay, _patternFactory, startingCard);
 
             if (play == null) {
                 _passCount++;
@@ -38,7 +44,7 @@ public class Round {
                 lastPlayer = currentPlayer;
                 _passCount = 0;
 
-                if (player.finished) {
+                if (player.isHandCardEmpty) {
                     hasWinner = true;
                 }
             }

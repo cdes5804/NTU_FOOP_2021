@@ -4,6 +4,9 @@ import Entity.Card;
 import Pattern.FullHouse;
 import java.util.List;
 
+/**
+ * Identify a full house pattern and generate a full house object.
+ */
 public class FullHouseFactory extends FactoryBase {
     @Override
     public FullHouse construct(List<Card> cards) {

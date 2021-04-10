@@ -13,34 +13,40 @@ import java.util.Collections;
 public class Game {
     private final int NUMBER_OF_PLAYERS = 4;
     private final int NUMBER_OF_CARDS = 52;
-    private final Card _startCard;
+    private final Card _startingCard;
     private final List<Player> _players;
+    private final List<Card> _deck;
     private final PatternFactory _patternFactory;
     private int _startPlayer;
 
-    public Game(PatternFactory patternFactory) {
-        _players = new ArrayList<Player>(NUMBER_OF_PLAYERS);
-        _startCard = new Card("C[3]");
+    public Game(PatternFactory patternFactory, Card startingCard) {
+        _players = new ArrayList<Player>();
+        _deck = new ArrayList<Card>();
+        _startingCard = startingCard;
         _patternFactory = patternFactory;
         _startPlayer = -1;
     }
 
     public void start() {
-        List<Card> deck = getDeck();
+        getDeck();
         getPlayers();
 
         for (int i = 0; i < NUMBER_OF_CARDS; ++i) {
-            if (_startCard.equals(deck.get(i))) {
+            if (_startingCard.equals(_deck.get(i))) {
                 _startPlayer = i % NUMBER_OF_PLAYERS;
             }
 
-            _players.get(i % NUMBER_OF_PLAYERS).draw(deck.get(i));
+            _players.get(i % NUMBER_OF_PLAYERS).draw(_deck.get(i));
         }
+
+        boolean isFirstRound = true;
 
         while (true) {
             Writer.writeRoundBegin();
-            Round round = new Round(_players);
-            round.start(_startPlayer, _patternFactory);
+            Round round = new Round(_players, _patternFactory);
+            Card startingCard = isFirstRound ? _startingCard : null;
+            
+            round.start(_startPlayer, startingCard);
             _startPlayer = round.lastPlayer;
 
             if (round.hasWinner) {
@@ -59,16 +65,12 @@ public class Game {
         }
     }
 
-    private List<Card> getDeck() {
-        List<Card> deck = new ArrayList<Card>();
-
+    private void getDeck() {
         for (int i = 0; i < NUMBER_OF_CARDS; ++i) {
             String cardString = Reader.readCard();
-            deck.add(new Card(cardString));
+            _deck.add(new Card(cardString));
         }
 
-        Collections.reverse(deck);
-
-        return deck;
+        Collections.reverse(_deck);
     }
 }

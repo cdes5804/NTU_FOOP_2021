@@ -3,6 +3,10 @@ package Pattern;
 import Entity.Card;
 import java.util.List;
 
+/**
+ * The full house pattern in big two.
+ * Along with the comparator to compare the rank between two full houses.
+ */
 public final class FullHouse extends PatternBase {
     public FullHouse(List<Card> cards) {
         super(cards);

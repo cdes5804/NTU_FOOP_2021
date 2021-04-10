@@ -4,6 +4,9 @@ import Entity.Card;
 import Pattern.Straight;
 import java.util.List;
 
+/**
+ * Identify a straight pattern and generate a straight object.
+ */
 public class StraightFactory extends FactoryBase {
     @Override
     public Straight construct(List<Card> cards) {

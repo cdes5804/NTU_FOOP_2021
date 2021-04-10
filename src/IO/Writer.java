@@ -3,7 +3,11 @@ package IO;
 import Entity.Player;
 import Entity.Card;
 import Pattern.PatternBase;
+import java.util.List;
 
+/**
+ * Writer is responsible for every output.
+ */
 public class Writer {
     public static void writeRoundBegin() {
         System.out.println("New round begins.");
@@ -13,12 +17,12 @@ public class Writer {
         System.out.printf("Next turn: %s\n", player.name);
     }
 
-    public static void writePlayerHandCards(Player player) {
+    public static void writePlayerHandCards(List<Card> handCards) {
         StringBuilder numbers = new StringBuilder();
         StringBuilder cards = new StringBuilder();
 
-        for (int i = 0; i < player.handCards.size(); ++i) {
-            String cardString = player.handCards.get(i).toString();
+        for (int i = 0; i < handCards.size(); ++i) {
+            String cardString = handCards.get(i).toString();
             numbers.append(String.format("%"+(-cardString.length())+"s", i)).append(" ");
             cards.append(cardString).append(" ");
         }
