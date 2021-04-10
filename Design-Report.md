@@ -6,7 +6,7 @@
 
 ### Software Design
 
-The classes are structured into packages, and will be introduced based on the structure.
+The classes are structured into packages, and will be introduced based on the package structure.
 
 * #### Entity
 
@@ -63,7 +63,7 @@ The classes are structured into packages, and will be introduced based on the st
   * ***PatternFactory***:
     * Duty: Collects all factories and use the appropriate one when receiving a set of cards.
     * Interaction with other classes:
-      * ***Cards***: Receives a set of cards and test is against the factories.
+      * ***Cards***: Receives a set of cards and test it against the factories.
   * ***FactoryUtils***
     * Duty: Provides some useful utility functions for factories to use.
     * Interaction with other classes: It is a static utility class and its member functions are called by factories.
@@ -83,11 +83,11 @@ First we have to create a ***Flush*** class under the **Pattern** package, and i
 Then we have to implement two functions:
 
 1. `constructor`: Construct the object. Calling `super()` will suffice.
-2. `compareTo`: Define the logic to compare a flush to another flush.
+2. `compareTo`: Define the logic to compare a flush with another flush.
 
 
 
-After we are done with the ***Flush*** class, we create ***FlushFactory*** under the **Factory** package, and it has to inherit **FactoryBase**.
+After we are done with the ***Flush*** class, we create ***FlushFactory*** under the **Factory** package, and it has to inherit ***FactoryBase***.
 
 We have to provide two functions:
 
@@ -98,8 +98,8 @@ We have to provide two functions:
 
 After we have created these two classes, the only thing left to change is the main function.
 
-We add a single line of code:  `patternFactory.register(new FlushFactory());` 
+First we import ***FlushFactory***, then we add a single line of code:  `patternFactory.register(new FlushFactory());` 
 
 This way, ***PatternFactory*** will try to identify the flush pattern and generate the object for us.
 
-In essence, to add a new pattern, we only need to create two new classes and add a single line of code to the main function, without having to modify any character of the existing code.
+In essence, to add a new pattern, we only need to create two new classes and add two lines of code to the main function, without having to modify any character of the existing code.
