@@ -2,7 +2,7 @@ package Entity;
 
 import IO.Reader;
 import IO.Writer;
-import Pattern.PatternFactory;
+import Pattern.Factory.PatternFactory;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;

@@ -4,22 +4,8 @@ import Entity.Card;
 import java.util.List;
 
 public final class Single extends PatternBase {
-    public Single() {
-        super();
-    }
-
-    private Single(List<Card> cards) {
+    public Single(List<Card> cards) {
         super(cards);
-    }
-
-    @Override
-    public Single construct(List<Card> cards) {
-        return new Single(cards);
-    }
-
-    @Override
-    public boolean isValidPattern(List<Card> cards) {
-        return cards.size() == 1;
     }
     
     @Override

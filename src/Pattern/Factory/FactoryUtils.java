@@ -1,9 +1,9 @@
-package Pattern;
+package Pattern.Factory;
 
 import Entity.Card;
 import java.util.List;
 
-public class PatternUtils {
+public class FactoryUtils {
     public static boolean isSameRank(List<Card> cards) {
         int numberOfCards = cards.size();
 

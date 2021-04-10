@@ -2,7 +2,7 @@ package Entity;
 
 import IO.Writer;
 import Pattern.PatternBase;
-import Pattern.PatternFactory;
+import Pattern.Factory.PatternFactory;
 import java.util.List;
 
 public class Round {

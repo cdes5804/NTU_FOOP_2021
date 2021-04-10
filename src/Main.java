@@ -3,21 +3,17 @@
  */
 
 import Entity.Game;
-import Pattern.PatternFactory;
-import Pattern.Single;
-import Pattern.Pair;
-import Pattern.Straight;
-import Pattern.FullHouse;
+import Pattern.Factory.*;
 
 public class Main {
     public static void main(String[] args) {
         PatternFactory patternFactory = new PatternFactory();
 
         // Define the patterns allowed in a game
-        patternFactory.register(new Single());
-        patternFactory.register(new Pair());
-        patternFactory.register(new Straight());
-        patternFactory.register(new FullHouse());
+        patternFactory.register(new SingleFactory());
+        patternFactory.register(new PairFactory());
+        patternFactory.register(new StraightFactory());
+        patternFactory.register(new FullHouseFactory());
 
         Game bigTwo = new Game(patternFactory);
         bigTwo.start();

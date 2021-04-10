@@ -9,12 +9,7 @@ import Entity.Card;
 public abstract class PatternBase implements Comparable<PatternBase> {
     public List<Card> cards;
 
-    public PatternBase() {};
-
     protected PatternBase(List<Card> cards) {
         this.cards = cards;
     }
-
-    abstract public PatternBase construct(List<Card> cards);
-    abstract public boolean isValidPattern(List<Card> cards);
 }
