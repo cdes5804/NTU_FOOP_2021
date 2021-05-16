@@ -1,6 +1,6 @@
 package Entities;
 
-import java.util.Unit;
+import java.util.List;
 
 public class Troop {
     public List<Unit> units;

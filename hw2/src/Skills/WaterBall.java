@@ -1,6 +1,11 @@
 package Skills;
 
-public class WaterBall extends SkillBase implements Actions {
+import java.util.List;
+import java.util.ArrayList;
+import Entities.Unit;
+import Entities.Troop;
+
+public class WaterBall extends SkillBase implements Action {
     public WaterBall() {
         super(50, 1, 120, 1);
     }
@@ -9,11 +14,11 @@ public class WaterBall extends SkillBase implements Actions {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
         
-        int totalDamage = damage + activeUnit.isCheeredUp() ? 50 : 0;
+        int totalDamage = damage + (activeUnit.isCheeredUp() ? 50 : 0);
 
-        List<Integer> indices = new ArrayList<Integer>(1, 2, 3);
+        List<Integer> indices = new ArrayList<Integer>();
         for (int index : indices) {
-            oppositeTroop.units[index].decreaseHp(totalDamage);
+            oppositeTroop.units.get(index).decreaseHp(totalDamage);
         }
     }
 }

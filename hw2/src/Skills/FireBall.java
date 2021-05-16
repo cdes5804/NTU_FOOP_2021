@@ -12,9 +12,9 @@ public class FireBall extends SkillBase implements Action {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        int totalDamage = damage + activeUnit.isCheeredUp() ? 50 : 0;
+        int totalDamage = damage + (activeUnit.isCheeredUp() ? 50 : 0);
         for (Unit unit : oppositeTroop.units) {
-            if (unit.Alive()) {
+            if (unit.isAlive()) {
                 unit.decreaseHp(totalDamage);
             }
         }

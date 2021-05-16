@@ -3,10 +3,10 @@ package Skills;
 import Entities.Unit;
 
 public abstract class SkillBase {
-    private int requiredMp;
-    private int numTarget;
-    private int damage;
-    private int heal;
+    protected int requiredMp;
+    protected int numTarget;
+    protected int damage;
+    protected int heal;
 
     SkillBase(int requiredMp, int numTarget, int damage, int heal) {
         this.requiredMp = requiredMp;
