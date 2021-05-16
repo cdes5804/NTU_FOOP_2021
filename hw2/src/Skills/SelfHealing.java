@@ -3,7 +3,7 @@ package Skills;
 import Entities.Troop;
 import Entities.Unit;
 
-public class SelfHealing extends SkillBase implements Action {
+public class SelfHealing extends SkillBase {
     public SelfHealing() {
         super(50, 0, 0, 150);
     }

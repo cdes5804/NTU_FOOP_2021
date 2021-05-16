@@ -8,4 +8,8 @@ public class Troop {
     public Troop(List<Unit> units) {
         this.units = units;
     }
+
+    public void addAlly(Unit unit) {
+        this.units.add(unit);
+    }
 }

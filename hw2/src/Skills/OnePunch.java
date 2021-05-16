@@ -2,12 +2,13 @@ package Skills;
 
 import java.util.List;
 import java.util.ArrayList;
-import Entities.Unit;
 import Entities.Troop;
+import Entities.Unit;
+import Utils.provided;
 
-public class WaterBall extends SkillBase {
-    public WaterBall() {
-        super(50, 1, 120, 1);
+public class OnePunch extends SkillBase {
+    public OnePunch() {
+        super(180, 1, 0, 0);
     }
 
     @Override
@@ -16,7 +17,8 @@ public class WaterBall extends SkillBase {
 
         List<Integer> indices = new ArrayList<Integer>();
         for (int index : indices) {
-            oppositeTroop.units.get(index).decreaseHp(totalDamage(activeUnit));
+            provided.OnePunch punch = new provided.OnePunch();
+            punch.perform(oppositeTroop.units.get(index));
         }
     }
 }

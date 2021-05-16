@@ -1,5 +1,6 @@
 package Entities;
 
+import java.util.List;
 import States.StateBase;
 import States.Normal;
 
@@ -11,6 +12,7 @@ public class Unit {
     private StateBase state;
     private boolean isPetrified;
     private boolean isCheeredUp;
+    private List<Unit> curse;
 
     public Unit(int healthPoint, int magicPoint, int strength, String name) {
         this.healthPoint = healthPoint;
@@ -53,6 +55,10 @@ public class Unit {
         return strength;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setCheeredUp(boolean isCheeredUp) {
         this.isCheeredUp = isCheeredUp;
     }
@@ -82,7 +88,15 @@ public class Unit {
         }
     }
 
+    public void addCurse(Unit curser) {
+        if (!curse.contains(curser)) {
+            curse.add(curser);
+        }
+    }
+
     private void die() {
-        
+        for (Unit curser : curse) {
+            curser.increaseHp(magicPoint);
+        }
     }
 }
