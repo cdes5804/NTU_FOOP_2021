@@ -16,4 +16,9 @@ public class Cheerup extends StateBase {
     public void clearState() {
         target.setCheeredUp(false);
     }
+
+    @Override
+    public String toString() {
+        return "Cheerup";
+    }
 }

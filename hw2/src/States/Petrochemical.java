@@ -16,4 +16,9 @@ public class Petrochemical extends StateBase {
     public void clearState() {
         target.setPetrified(false);
     }
+
+    @Override
+    public String toString() {
+        return "Petrochemical";
+    }
 }

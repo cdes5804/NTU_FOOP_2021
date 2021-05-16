@@ -11,13 +11,23 @@ public class Curse extends SkillBase {
     }
 
     @Override
+    public Curse create() {
+        return new Curse();
+    }
+
+    @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
         List<Integer> indices = new ArrayList<Integer>();
         for (int index : indices) {
-            Unit target = activeTroop.units.get(index);
+            Unit target = activeTroop.getUnits().get(index);
             target.addCurse(activeUnit);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Curse";
     }
 }

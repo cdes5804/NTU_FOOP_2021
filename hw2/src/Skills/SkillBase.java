@@ -25,6 +25,11 @@ public class SkillBase implements Action {
     }
 
     @Override
+    public SkillBase create() {
+        return null;
+    }
+
+    @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         return;
     }

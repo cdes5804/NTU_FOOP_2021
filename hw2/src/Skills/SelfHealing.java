@@ -9,8 +9,18 @@ public class SelfHealing extends SkillBase {
     }
 
     @Override
+    public SelfHealing create() {
+        return new SelfHealing();
+    }
+
+    @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
         activeUnit.increaseHp(heal);
+    }
+
+    @Override
+    public String toString() {
+        return "SelfHealing";
     }
 }

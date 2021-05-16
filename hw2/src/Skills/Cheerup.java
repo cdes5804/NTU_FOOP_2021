@@ -11,13 +11,23 @@ public class Cheerup extends SkillBase {
     }
 
     @Override
+    public Cheerup create() {
+        return new Cheerup();
+    }
+
+    @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
         List<Integer> indices = new ArrayList<Integer>();
         for (int index : indices) {
-            Unit target = activeTroop.units.get(index);
+            Unit target = activeTroop.getUnits().get(index);
             target.setState(new States.Cheerup(target));
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Cheerup";
     }
 }

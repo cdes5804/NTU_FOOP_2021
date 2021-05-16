@@ -11,13 +11,23 @@ public class Poison extends SkillBase {
     }
 
     @Override
+    public Poison create() {
+        return new Poison();
+    }
+
+    @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
         List<Integer> indices = new ArrayList<Integer>();
         for (int index : indices) {
-            Unit target = oppositeTroop.units.get(index);
+            Unit target = oppositeTroop.getUnits().get(index);
             target.setState(new States.Poisoned(target));
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Poison";
     }
 }

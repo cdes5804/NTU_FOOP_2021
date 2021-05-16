@@ -9,13 +9,23 @@ public class FireBall extends SkillBase {
     }
 
     @Override
+    public FireBall create() {
+        return new FireBall();
+    }
+
+    @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        for (Unit unit : oppositeTroop.units) {
+        for (Unit unit : oppositeTroop.getUnits()) {
             if (unit.isAlive()) {
                 unit.decreaseHp(totalDamage(activeUnit));
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "FireBall";
     }
 }

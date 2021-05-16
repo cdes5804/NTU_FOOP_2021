@@ -1,27 +1,39 @@
 package Entities;
 
 import java.util.List;
+
+import Skills.SkillBase;
 import States.StateBase;
 import States.Normal;
+import Utils.Utils;
+import Utils.Writer;
+import tw.waterball.foop.hw2.provided.Target;
+import tw.waterball.foop.hw2.provided.AI;
 
-public class Unit {
+public class Unit implements Target {
     private int healthPoint;
     private int magicPoint;
     private int strength;
     private String name;
+    private List<SkillBase> skills;
     private StateBase state;
     private boolean isPetrified;
     private boolean isCheeredUp;
     private List<Unit> curse;
 
-    public Unit(int healthPoint, int magicPoint, int strength, String name) {
+    public Unit(int healthPoint, int magicPoint, int strength, String name, List<SkillBase> skills) {
         this.healthPoint = healthPoint;
         this.magicPoint = magicPoint;
         this.strength = strength;
         this.name = name;
+        this.skills = skills;
         this.state = new Normal(this);
         this.isPetrified = false;
         this.isCheeredUp = false;
+    }
+
+    public int selectAction(AI ai) {
+        return Utils.getAction(this, ai);
     }
 
     public boolean isAlive() {
@@ -47,7 +59,7 @@ public class Unit {
         return healthPoint;
     }
 
-    public int getMP() {
+    public int getMp() {
         return magicPoint;
     }
 
@@ -57,6 +69,10 @@ public class Unit {
 
     public String getName() {
         return name;
+    }
+
+    public List<SkillBase> getSkills() {
+        return skills;
     }
 
     public void setCheeredUp(boolean isCheeredUp) {
@@ -88,6 +104,10 @@ public class Unit {
         }
     }
 
+    public String getState() {
+        return state.toString();
+    }
+
     public void addCurse(Unit curser) {
         if (!curse.contains(curser)) {
             curse.add(curser);
@@ -98,5 +118,11 @@ public class Unit {
         for (Unit curser : curse) {
             curser.increaseHp(magicPoint);
         }
+        Writer.writeDies(this);
+    }
+
+    @Override
+    public void takeOnePunchDamage(int damage) {
+        decreaseHp(damage);
     }
 }

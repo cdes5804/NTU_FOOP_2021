@@ -11,12 +11,22 @@ public class WaterBall extends SkillBase {
     }
 
     @Override
+    public WaterBall create() {
+        return new WaterBall();
+    }
+
+    @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
         List<Integer> indices = new ArrayList<Integer>();
         for (int index : indices) {
-            oppositeTroop.units.get(index).decreaseHp(totalDamage(activeUnit));
+            oppositeTroop.getUnits().get(index).decreaseHp(totalDamage(activeUnit));
         }
+    }
+
+    @Override
+    public String toString() {
+        return "WaterBall";
     }
 }

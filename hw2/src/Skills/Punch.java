@@ -4,11 +4,16 @@ import java.util.List;
 import java.util.ArrayList;
 import Entities.Troop;
 import Entities.Unit;
-import Utils.provided;
+import tw.waterball.foop.hw2.provided.OnePunch;
 
-public class OnePunch extends SkillBase {
-    public OnePunch() {
+public class Punch extends SkillBase {
+    public Punch() {
         super(180, 1, 0, 0);
+    }
+
+    @Override
+    public Punch create() {
+        return new Punch();
     }
 
     @Override
@@ -17,8 +22,13 @@ public class OnePunch extends SkillBase {
 
         List<Integer> indices = new ArrayList<Integer>();
         for (int index : indices) {
-            provided.OnePunch punch = new provided.OnePunch();
-            punch.perform(oppositeTroop.units.get(index));
+            OnePunch onePunch = new OnePunch();
+            onePunch.perform(oppositeTroop.getUnits().get(index));
         }
+    }
+
+    @Override
+    public String toString() {
+        return "OnePunch";
     }
 }

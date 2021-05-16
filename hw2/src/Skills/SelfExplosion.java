@@ -11,12 +11,17 @@ public class SelfExplosion extends SkillBase {
     }
 
     @Override
+    public SelfExplosion create() {
+        return new SelfExplosion();
+    }
+
+    @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
         Troop troopOne = null;
         Troop troopTwo = null;
-        if (activeTroop.units.get(0).getName() == "Hero") {
+        if (activeTroop.getUnits().get(0).getName() == "Hero") {
             troopOne = activeTroop;
             troopTwo = oppositeTroop;
         } else {
@@ -24,7 +29,7 @@ public class SelfExplosion extends SkillBase {
             troopTwo = activeTroop;
         }
 
-        List<Unit> allUnits = Stream.concat(troopOne.units.stream(), troopTwo.units.stream())
+        List<Unit> allUnits = Stream.concat(troopOne.getUnits().stream(), troopTwo.getUnits().stream())
                              .collect(Collectors.toList());
 
         for (Unit unit : allUnits) {
@@ -32,5 +37,10 @@ public class SelfExplosion extends SkillBase {
                 continue;
             unit.decreaseHp(totalDamage(activeUnit));
         }
+    }
+
+    @Override
+    public String toString() {
+        return "SelfExplosion";
     }
 }
