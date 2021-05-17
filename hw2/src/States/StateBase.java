@@ -1,7 +1,5 @@
 package States;
 
-import java.lang.ref.Cleaner.Cleanable;
-
 import Entities.Unit;
 
 public class StateBase implements Effect {
@@ -10,15 +8,17 @@ public class StateBase implements Effect {
 
     public StateBase(Unit target) {
         this.target = target;
-        target.setState(this);
         remainingRound = 3;
     }
 
     public void decreaseRemainingRound() {
         remainingRound -= 1;
+        if (isOver()) {
+            clearState();
+        }
     }
 
-    public boolean isOver() {
+    protected boolean isOver() {
         return remainingRound == 0;
     }
 
@@ -29,6 +29,6 @@ public class StateBase implements Effect {
 
     @Override
     public void clearState() {
-        return;
+        target.setState(new Normal(target));
     }
 }

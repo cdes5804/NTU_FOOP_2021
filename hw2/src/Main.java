@@ -9,7 +9,7 @@ import tw.waterball.foop.hw2.provided.AI;
 
 public class Main {
     public static void main(String[] args) {
-        final AI ai = new AI();
+        AI ai = new AI();
         List<SkillBase> allowedSkills = new ArrayList<SkillBase>();
 
         allowedSkills.add(new WaterBall());
@@ -24,5 +24,6 @@ public class Main {
         allowedSkills.add(new Punch());
 
         RPG game = new RPG(ai, allowedSkills);
+        game.start();
     }
 }

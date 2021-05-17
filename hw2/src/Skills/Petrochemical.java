@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.ArrayList;
 import Entities.Troop;
 import Entities.Unit;
+import Utils.Utils;
+import Utils.Writer;
 
 public class Petrochemical extends SkillBase {
     public Petrochemical() {
@@ -19,11 +21,12 @@ public class Petrochemical extends SkillBase {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        List<Integer> indices = new ArrayList<Integer>();
-        for (int index : indices) {
-            Unit target = oppositeTroop.getUnits().get(index);
-            target.setState(new States.Petrochemical(target));
-        }
+        List<Integer> indices = Utils.getTargets(activeUnit, numTarget, oppositeTroop);
+
+        Writer.writePerformMessage(this, activeUnit, oppositeTroop.getUnits(), indices);
+
+        Unit target = oppositeTroop.getUnits().get(indices.get(0));
+        target.setState(new States.Petrochemical(target));
     }
 
     @Override

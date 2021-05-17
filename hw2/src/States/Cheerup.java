@@ -15,6 +15,7 @@ public class Cheerup extends StateBase {
     @Override
     public void clearState() {
         target.setCheeredUp(false);
+        target.setState(new Normal(target));
     }
 
     @Override

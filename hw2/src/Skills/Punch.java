@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.ArrayList;
 import Entities.Troop;
 import Entities.Unit;
+import Utils.Utils;
+import Utils.Writer;
 import tw.waterball.foop.hw2.provided.OnePunch;
 
 public class Punch extends SkillBase {
@@ -20,11 +22,17 @@ public class Punch extends SkillBase {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        List<Integer> indices = new ArrayList<Integer>();
-        for (int index : indices) {
-            OnePunch onePunch = new OnePunch();
-            onePunch.perform(oppositeTroop.getUnits().get(index));
-        }
+        List<Integer> indices = Utils.getTargets(activeUnit, numTarget, oppositeTroop);
+
+        Writer.writePerformMessage(this, activeUnit, oppositeTroop.getUnits(), indices);
+
+        OnePunch onePunch = new OnePunch();
+        onePunch.perform(activeUnit); // record how much damage OnePunch deals
+        int totalDamage = totalDamage(activeUnit) + activeUnit.getOnePunchDamage();
+        Unit targetUnit = oppositeTroop.getUnits().get(indices.get(0));
+
+        Writer.writeDamage(totalDamage, activeUnit, targetUnit);
+        targetUnit.decreaseHp(totalDamage);
     }
 
     @Override

@@ -7,10 +7,6 @@ import java.util.List;
 public class Reader {
     private final static Scanner scanner = new Scanner(System.in);
 
-    private static boolean isEmptyOrSpace(String string) {
-        return string.trim().length() == 0;
-    }
-
     public static List<String> readUnit() {
         String line;
         line = scanner.nextLine();
@@ -25,10 +21,15 @@ public class Reader {
     }
 
     public static int readAction() {
-        return scanner.nextInt();
+        String line = scanner.nextLine();
+        return Integer.parseInt(line);
     }
 
     public static List<Integer> readTarget() {
+        String line = scanner.nextLine();
+        String[] segments = line.split(", ");
+        Integer[] buffer = Arrays.stream(segments).map(s -> Integer.parseInt(s)).toArray(Integer[]::new);
 
+        return Arrays.asList(buffer);
     }
 }

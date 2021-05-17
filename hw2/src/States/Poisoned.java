@@ -13,11 +13,6 @@ public class Poisoned extends StateBase {
     }
 
     @Override
-    public void clearState() {
-        return;
-    }
-
-    @Override
     public String toString() {
         return "Poisoned";
     }

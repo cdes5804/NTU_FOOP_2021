@@ -4,6 +4,7 @@ import java.util.stream.*;
 import java.util.List;
 import Entities.Troop;
 import Entities.Unit;
+import Utils.Writer;
 
 public class SelfExplosion extends SkillBase {
     public SelfExplosion() {
@@ -19,22 +20,17 @@ public class SelfExplosion extends SkillBase {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        Troop troopOne = null;
-        Troop troopTwo = null;
-        if (activeTroop.getUnits().get(0).getName() == "Hero") {
-            troopOne = activeTroop;
-            troopTwo = oppositeTroop;
-        } else {
-            troopOne = oppositeTroop;
-            troopTwo = activeTroop;
-        }
+        Troop troopOne = activeTroop.getUnits().get(0).getName().equals("[1]Hero") ? activeTroop : oppositeTroop;
+        Troop troopTwo = activeTroop.getUnits().get(0).getName().equals("[1]Hero") ? oppositeTroop : activeTroop;
 
-        List<Unit> allUnits = Stream.concat(troopOne.getUnits().stream(), troopTwo.getUnits().stream())
+        List<Unit> allUnits = Stream.concat(troopOne.getUnits().stream().filter(unit -> unit != activeUnit),
+                                            troopTwo.getUnits().stream().filter(unit -> unit != activeUnit))
                              .collect(Collectors.toList());
+        
+        Writer.writePerformMessage(this, activeUnit, allUnits, null);
 
         for (Unit unit : allUnits) {
-            if (unit == activeUnit)
-                continue;
+            Writer.writeDamage(totalDamage(activeUnit), activeUnit, unit);
             unit.decreaseHp(totalDamage(activeUnit));
         }
     }

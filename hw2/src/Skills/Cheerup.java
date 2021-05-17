@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.ArrayList;
 import Entities.Troop;
 import Entities.Unit;
+import Utils.Utils;
+import Utils.Writer;
 
 public class Cheerup extends SkillBase {
     public Cheerup() {
@@ -19,7 +21,10 @@ public class Cheerup extends SkillBase {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        List<Integer> indices = new ArrayList<Integer>();
+        List<Integer> indices = Utils.getTargets(activeUnit, numTarget, activeTroop);
+
+        Writer.writePerformMessage(this, activeUnit, activeTroop.getUnits(), indices);
+
         for (int index : indices) {
             Unit target = activeTroop.getUnits().get(index);
             target.setState(new States.Cheerup(target));

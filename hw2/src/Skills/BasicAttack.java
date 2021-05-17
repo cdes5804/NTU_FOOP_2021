@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Entities.Unit;
 import Entities.Troop;
 import Utils.Utils;
-import tw.waterball.foop.hw2.provided.AI;
+import Utils.Writer;
 
 public class BasicAttack extends SkillBase {
     public BasicAttack() {
@@ -13,11 +13,19 @@ public class BasicAttack extends SkillBase {
     }
 
     @Override
-    public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop, AI ai) {
-        List<Integer> indices = Utils.getTarget(activeUnit, numTarget, oppositeTroop, ai);
-        for (int index : indices) {
-            oppositeTroop.getUnits().get(index).decreaseHp(totalDamage(activeUnit));
-        }
+    public BasicAttack create() {
+        return new BasicAttack();
+    }
+
+    @Override
+    public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
+        List<Integer> indices = Utils.getTargets(activeUnit, numTarget, oppositeTroop);
+
+        Writer.writePerformMessage(this, activeUnit, oppositeTroop.getUnits(), indices);
+
+        Unit targetUnit = oppositeTroop.getUnits().get(indices.get(0));
+        Writer.writeDamage(totalDamage(activeUnit) + activeUnit.getStrength(), activeUnit, targetUnit);
+        targetUnit.decreaseHp(totalDamage(activeUnit) + activeUnit.getStrength());
     }
 
     @Override

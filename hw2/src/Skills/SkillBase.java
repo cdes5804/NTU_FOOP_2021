@@ -2,6 +2,7 @@ package Skills;
 
 import Entities.Unit;
 import Entities.Troop;
+import tw.waterball.foop.hw2.provided.AI;
 
 public class SkillBase implements Action {
     protected int requiredMp;
@@ -16,12 +17,12 @@ public class SkillBase implements Action {
         this.heal = heal;
     }
 
-    protected int totalDamage(Unit activeUnit) {
+    public int totalDamage(Unit activeUnit) {
         return damage + (activeUnit.isCheeredUp() ? 50 : 0);
     }
 
     public boolean available(Unit activeUnit) {
-        return activeUnit.getMP() >= requiredMp;
+        return activeUnit.getMp() >= requiredMp;
     }
 
     @Override

@@ -3,6 +3,7 @@ package Entities;
 import java.util.List;
 import Skills.SkillBase;
 import Utils.Utils;
+import Utils.Writer;
 import tw.waterball.foop.hw2.provided.AI;
 
 public class RPG {
@@ -11,16 +12,26 @@ public class RPG {
     AI ai;
 
     public RPG(AI ai, List<SkillBase> allowedSkills) {
-        troopOne = Utils.getTroop(allowedSkills, "[1]");
-        troopTwo = Utils.getTroop(allowedSkills, "[2]");
+        troopOne = Utils.getTroop(allowedSkills, "[1]", ai);
+        troopTwo = Utils.getTroop(allowedSkills, "[2]", ai);
         this.ai = ai;
     }
 
     public void start() {
         while (isHeroAlive() && isTroopAlive()) {
-            Round round = new Round(troopOne, troopTwo, ai);
+            Round round = new Round(troopOne, troopTwo);
             round.start();
         }
+
+        if (isVictory()) {
+            Writer.writeWin();
+        } else {
+            Writer.writeLose();
+        }
+    }
+
+    private boolean isVictory()  {
+        return isHeroAlive();
     }
 
     private boolean isHeroAlive() {
@@ -28,6 +39,6 @@ public class RPG {
     }
 
     private boolean isTroopAlive() {
-        return !troopOne.isAnnihilated() && troopTwo.isAnnihilated();
+        return !troopOne.isAnnihilated() && !troopTwo.isAnnihilated();
     }
 }

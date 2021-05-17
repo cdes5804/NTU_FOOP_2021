@@ -2,6 +2,7 @@ package Skills;
 
 import Entities.Troop;
 import Entities.Unit;
+import Utils.Writer;
 
 public class SelfHealing extends SkillBase {
     public SelfHealing() {
@@ -9,13 +10,16 @@ public class SelfHealing extends SkillBase {
     }
 
     @Override
-    public SelfHealing create() {
+    public SkillBase create() {
         return new SelfHealing();
     }
 
     @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
+
+        Writer.writePerformMessage(this, activeUnit, null, null);
+
         activeUnit.increaseHp(heal);
     }
 

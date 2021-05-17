@@ -2,10 +2,7 @@ package Entities;
 
 import java.util.List;
 import java.util.Arrays;
-import Utils.Utils;
-import Skills.SkillBase;
 import Utils.Writer;
-import tw.waterball.foop.hw2.provided.AI;
 
 public class Troop {
     private List<Unit> units;
@@ -23,7 +20,8 @@ public class Troop {
     }
 
     public boolean isAnnihilated() {
-        return aliveCount() == 0;
+        return aliveCount() == 0
+               || (units.get(0).getName().equals("[1]Hero") && !units.get(0).isAlive());
     }
 
     public int aliveCount() {
@@ -35,26 +33,24 @@ public class Troop {
         units = Arrays.asList(alive);
     }
 
-    public void action(AI ai, Troop oppositeTroop) {
+    public void updateUnitsState() {
         for (Unit unit : units) {
-            if (!unit.isAlive()) {
-                continue;
-            }
+            unit.getState().decreaseRemainingRound();
+        }
+    }
 
+    public void action(Troop oppositeTroop) {
+        for (Unit unit : units) {
             Writer.writeTurn(unit);
 
-            if (!unit.isPetrified()) {
-                SkillBase skill = null;
+            unit.getState().takeEffect();
 
-                while (skill == null || !skill.available(unit)) {
-                    if (skill != null) {
-                        Writer.writeUnavailableSkill();
-                    }
-                    int action = unit.selectAction(ai);
-                    skill = unit.getSkills().get(action);
-                }
-                
-                skill.perform(ai);
+            if (unit.isAlive() && !unit.isPetrified()) {
+                unit.action(this, oppositeTroop);
+            }
+
+            if (isAnnihilated() || oppositeTroop.isAnnihilated()) {
+                return;
             }
         }
     }

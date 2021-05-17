@@ -15,6 +15,7 @@ public class Petrochemical extends StateBase {
     @Override
     public void clearState() {
         target.setPetrified(false);
+        target.setState(new Normal(target));
     }
 
     @Override

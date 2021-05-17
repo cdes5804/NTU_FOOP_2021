@@ -1,7 +1,7 @@
 package Entities;
 
 import java.util.List;
-
+import java.util.ArrayList;
 import Skills.SkillBase;
 import States.StateBase;
 import States.Normal;
@@ -20,8 +20,10 @@ public class Unit implements Target {
     private boolean isPetrified;
     private boolean isCheeredUp;
     private List<Unit> curse;
+    private int onePunchDamage;
+    private AI ai;
 
-    public Unit(int healthPoint, int magicPoint, int strength, String name, List<SkillBase> skills) {
+    public Unit(int healthPoint, int magicPoint, int strength, String name, List<SkillBase> skills, AI ai) {
         this.healthPoint = healthPoint;
         this.magicPoint = magicPoint;
         this.strength = strength;
@@ -30,14 +32,20 @@ public class Unit implements Target {
         this.state = new Normal(this);
         this.isPetrified = false;
         this.isCheeredUp = false;
-    }
-
-    public int selectAction(AI ai) {
-        return Utils.getAction(this, ai);
+        this.curse = new ArrayList<Unit>();
+        this.ai = ai;
+        onePunchDamage = 0;
     }
 
     public boolean isAlive() {
         return healthPoint > 0;
+    }
+
+    public void action(Troop activeTroop, Troop oppositeTroop) {
+        SkillBase skill = Utils.getAction(this);
+        skill.perform(this, activeTroop, oppositeTroop);
+        activeTroop.removeDeath();
+        oppositeTroop.removeDeath();
     }
 
     public void decreaseHp(int amount) {
@@ -75,6 +83,14 @@ public class Unit implements Target {
         return skills;
     }
 
+    public boolean isAI() {
+        return ai != null && !name.equals("[1]Hero");
+    }
+
+    public AI getAI() {
+        return ai;
+    }
+
     public void setCheeredUp(boolean isCheeredUp) {
         this.isCheeredUp = isCheeredUp;
     }
@@ -92,20 +108,15 @@ public class Unit implements Target {
     }
 
     public void setState(StateBase state) {
-        this.state.clearState();
         this.state = state;
     }
 
-    public void updateState() {
-        state.decreaseRemainingRound();
-        if (state.isOver()) {
-            state.clearState();
-            state = new Normal(this);
-        }
+    public StateBase getState() {
+        return state;
     }
 
-    public String getState() {
-        return state.toString();
+    public int getOnePunchDamage() {
+        return onePunchDamage;
     }
 
     public void addCurse(Unit curser) {
@@ -121,8 +132,9 @@ public class Unit implements Target {
         Writer.writeDies(this);
     }
 
+    /* Change the functions purpose to record how much damage OnePunch is going to cause the enemy */
     @Override
     public void takeOnePunchDamage(int damage) {
-        decreaseHp(damage);
+        onePunchDamage = damage;
     }
 }

@@ -1,20 +1,30 @@
 package Entities;
 
-import tw.waterball.foop.hw2.provided.AI;
-
 public class Round {
     Troop troopOne;
     Troop troopTwo;
-    AI ai;
 
-    public Round(Troop troopOne, Troop troopTwo, AI ai) {
+    public Round(Troop troopOne, Troop troopTwo) {
         this.troopOne = troopOne;
         this.troopTwo = troopTwo;
-        this.ai = ai;
+    }
+
+    private boolean isRoundOver(Troop troopOne, Troop troopTwo) {
+        return troopOne.isAnnihilated() || troopTwo.isAnnihilated();
     }
 
     public void start() {
-        troopOne.action(ai, troopTwo);
-        troopTwo.action(ai, troopOne);
+        troopOne.action(troopTwo);
+        if (isRoundOver(troopOne, troopTwo)) {
+            return;
+        }
+
+        troopTwo.action(troopOne);
+        if (isRoundOver(troopOne, troopTwo)) {
+            return;
+        }
+
+        troopOne.updateUnitsState();
+        troopTwo.updateUnitsState();
     }
 }
