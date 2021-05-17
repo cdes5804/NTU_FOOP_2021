@@ -9,7 +9,7 @@ import Utils.Writer;
 
 public class Cheerup extends SkillBase {
     public Cheerup() {
-        super(100, 1, 0, 0);
+        super(100, 3, 0, 0);
     }
 
     @Override
@@ -21,12 +21,13 @@ public class Cheerup extends SkillBase {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        List<Integer> indices = Utils.getTargets(activeUnit, numTarget, activeTroop);
+        List<Unit> availableTargets = Utils.getAvailableTargets(activeUnit, activeTroop);
+        List<Integer> indices = Utils.getTargets(activeUnit, numTarget, availableTargets);
 
-        Writer.writePerformMessage(this, activeUnit, activeTroop.getUnits(), indices);
+        Writer.writePerformMessage(this, activeUnit, availableTargets, indices);
 
         for (int index : indices) {
-            Unit target = activeTroop.getUnits().get(index);
+            Unit target = availableTargets.get(index);
             target.setState(new States.Cheerup(target));
         }
     }

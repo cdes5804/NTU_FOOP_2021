@@ -31,7 +31,7 @@ public class RPG {
     }
 
     private boolean isVictory()  {
-        return isHeroAlive();
+        return !troopOne.isAnnihilated();
     }
 
     private boolean isHeroAlive() {

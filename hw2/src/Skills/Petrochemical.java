@@ -21,11 +21,12 @@ public class Petrochemical extends SkillBase {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        List<Integer> indices = Utils.getTargets(activeUnit, numTarget, oppositeTroop);
+        List<Unit> availableTargets = Utils.getAvailableTargets(activeUnit, oppositeTroop);
+        List<Integer> indices = Utils.getTargets(activeUnit, numTarget, availableTargets);
 
-        Writer.writePerformMessage(this, activeUnit, oppositeTroop.getUnits(), indices);
+        Writer.writePerformMessage(this, activeUnit, availableTargets, indices);
 
-        Unit target = oppositeTroop.getUnits().get(indices.get(0));
+        Unit target = availableTargets.get(indices.get(0));
         target.setState(new States.Petrochemical(target));
     }
 

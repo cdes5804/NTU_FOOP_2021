@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Arrays;
 import Entities.Unit;
 import Entities.Troop;
+import Utils.Utils;
 import Utils.Writer;
 import tw.waterball.foop.hw2.provided.AI;
 
@@ -29,7 +30,7 @@ public class Summon extends SkillBase {
 
         AI newAI = (activeUnit.getAI() == null ? null : new AI());
 
-        Unit slime = new Unit(hp, mp, str, "Slime", skills, newAI);
+        Unit slime = new Unit(hp, mp, str, Utils.getPrefix(activeUnit) + "Slime", skills, newAI);
         activeTroop.addAlly(slime);
     }
 

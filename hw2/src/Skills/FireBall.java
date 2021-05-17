@@ -1,7 +1,9 @@
 package Skills;
 
+import java.util.List;
 import Entities.Troop;
 import Entities.Unit;
+import Utils.Utils;
 import Utils.Writer;
 
 public class FireBall extends SkillBase {
@@ -17,10 +19,11 @@ public class FireBall extends SkillBase {
     @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
+        List<Unit> availableTargets = Utils.getAvailableTargets(activeUnit, oppositeTroop);
 
-        Writer.writePerformMessage(this, activeUnit, oppositeTroop.getUnits(), null);
+        Writer.writePerformMessage(this, activeUnit, availableTargets, null);
 
-        for (Unit unit : oppositeTroop.getUnits()) {
+        for (Unit unit : availableTargets) {
             Writer.writeDamage(totalDamage(activeUnit), activeUnit, unit);
             unit.decreaseHp(totalDamage(activeUnit));
         }

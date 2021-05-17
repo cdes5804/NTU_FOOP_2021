@@ -4,6 +4,7 @@ import java.util.stream.*;
 import java.util.List;
 import Entities.Troop;
 import Entities.Unit;
+import Utils.Utils;
 import Utils.Writer;
 
 public class SelfExplosion extends SkillBase {
@@ -23,9 +24,9 @@ public class SelfExplosion extends SkillBase {
         Troop troopOne = activeTroop.getUnits().get(0).getName().equals("[1]Hero") ? activeTroop : oppositeTroop;
         Troop troopTwo = activeTroop.getUnits().get(0).getName().equals("[1]Hero") ? oppositeTroop : activeTroop;
 
-        List<Unit> allUnits = Stream.concat(troopOne.getUnits().stream().filter(unit -> unit != activeUnit),
-                                            troopTwo.getUnits().stream().filter(unit -> unit != activeUnit))
-                             .collect(Collectors.toList());
+        List<Unit> allUnits = Stream.concat(Utils.getAvailableTargets(activeUnit, troopOne).stream().filter(unit -> unit != activeUnit),
+                                            Utils.getAvailableTargets(activeUnit, troopTwo).stream().filter(unit -> unit != activeUnit))
+                                    .collect(Collectors.toList());
         
         Writer.writePerformMessage(this, activeUnit, allUnits, null);
 
@@ -33,6 +34,8 @@ public class SelfExplosion extends SkillBase {
             Writer.writeDamage(totalDamage(activeUnit), activeUnit, unit);
             unit.decreaseHp(totalDamage(activeUnit));
         }
+
+        activeUnit.decreaseHp(activeUnit.getHp());
     }
 
     @Override

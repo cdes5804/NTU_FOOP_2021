@@ -21,6 +21,10 @@ public class SkillBase implements Action {
         return damage + (activeUnit.isCheeredUp() ? 50 : 0);
     }
 
+    public int getDamage() {
+        return damage;
+    }
+
     public boolean available(Unit activeUnit) {
         return activeUnit.getMp() >= requiredMp;
     }

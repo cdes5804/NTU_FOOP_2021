@@ -14,7 +14,7 @@ public class StateBase implements Effect {
     public void decreaseRemainingRound() {
         remainingRound -= 1;
         if (isOver()) {
-            clearState();
+            target.setState(new Normal(target));
         }
     }
 
@@ -29,6 +29,5 @@ public class StateBase implements Effect {
 
     @Override
     public void clearState() {
-        target.setState(new Normal(target));
     }
 }

@@ -44,8 +44,6 @@ public class Unit implements Target {
     public void action(Troop activeTroop, Troop oppositeTroop) {
         SkillBase skill = Utils.getAction(this);
         skill.perform(this, activeTroop, oppositeTroop);
-        activeTroop.removeDeath();
-        oppositeTroop.removeDeath();
     }
 
     public void decreaseHp(int amount) {
@@ -108,6 +106,7 @@ public class Unit implements Target {
     }
 
     public void setState(StateBase state) {
+        this.state.clearState();
         this.state = state;
     }
 

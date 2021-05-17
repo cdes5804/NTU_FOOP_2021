@@ -19,13 +19,13 @@ public class Writer {
         System.out.println(builder.toString().stripTrailing());
     }
 
-    public static void writeTargets(int numTarget, Troop troop) {
+    public static void writeTargets(int numTarget, List<Unit> units) {
         StringBuilder builder = new StringBuilder();
         builder.append(String.format("Select %d targets:", numTarget));
         
-        for (int i = 0; i < troop.aliveCount(); ++i) {
+        for (int i = 0; i < units.size(); ++i) {
             builder.append(String.format(" (%d) ", i));
-            builder.append(troop.getUnits().get(i).getName());
+            builder.append(units.get(i).getName());
         }
 
         System.out.println(builder.toString().stripTrailing());
@@ -36,7 +36,7 @@ public class Writer {
             Unit target = units.get(targets.get(0));
             System.out.printf("%s attacks %s.\n", activeUnit.getName(), target.getName());
         } else {
-            if (skill.totalDamage(activeUnit) == 0 && targets == null) {
+            if (skill.getDamage() == 0 && targets == null) {
                 System.out.printf("%s uses %s.\n", activeUnit.getName(), skill.toString());
             } else {
                 List<String> targetNames = Utils.getTargetUnitsName(units, targets);

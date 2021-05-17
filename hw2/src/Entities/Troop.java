@@ -1,7 +1,6 @@
 package Entities;
 
 import java.util.List;
-import java.util.Arrays;
 import Utils.Writer;
 
 public class Troop {
@@ -25,12 +24,7 @@ public class Troop {
     }
 
     public int aliveCount() {
-       return units.size();
-    }
-
-    public void removeDeath() {
-        Unit alive[] = units.stream().filter(unit -> unit.isAlive()).toArray(Unit[]::new);
-        units = Arrays.asList(alive);
+       return units.stream().filter(unit -> unit.isAlive()).toArray().length;
     }
 
     public void updateUnitsState() {
@@ -40,18 +34,26 @@ public class Troop {
     }
 
     public void action(Troop oppositeTroop) {
-        for (Unit unit : units) {
-            Writer.writeTurn(unit);
+        int current = 0;
+        
+        while (current < units.size()) {
+            Unit unit = units.get(current);
 
-            unit.getState().takeEffect();
+            if (unit.isAlive()) {
+                Writer.writeTurn(unit);
 
-            if (unit.isAlive() && !unit.isPetrified()) {
-                unit.action(this, oppositeTroop);
+                unit.getState().takeEffect();
+
+                if (unit.isAlive() && !unit.isPetrified()) {
+                    unit.action(this, oppositeTroop);
+                }
+
+                if (isAnnihilated() || oppositeTroop.isAnnihilated()) {
+                    return;
+                }
             }
 
-            if (isAnnihilated() || oppositeTroop.isAnnihilated()) {
-                return;
-            }
+            current++;
         }
     }
 }

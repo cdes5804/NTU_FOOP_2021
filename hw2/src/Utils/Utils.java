@@ -107,26 +107,37 @@ public final class Utils {
         return skill;
     }
 
-    public static List<Integer> getTargets(Unit activeUnit, int numTarget, Troop troop) {
+    public static List<Unit> getAvailableTargets(Unit activeUnit, Troop troop) {
+        List<Unit> availableUnits = new ArrayList<Unit>();
+
+        for (Unit unit : troop.getUnits()) {
+            if (unit.isAlive() && unit != activeUnit) {
+                availableUnits.add(unit);
+            }
+        }
+
+        return availableUnits;
+    }
+
+    public static List<Integer> getTargets(Unit activeUnit, int numTarget, List<Unit> candidates) {
         List<Integer> target = new ArrayList<Integer>();
 
-        if (troop.aliveCount() <= numTarget) {
-            for (int i = 0; i < troop.getUnits().size(); ++i) {
-                Unit unit = troop.getUnits().get(i);
-                if (unit.isAlive()) {
-                    target.add(i);
-                }
-            }
+        if (candidates.size() <= numTarget) {
+            target = IntStream.range(0, candidates.size()).boxed().collect(Collectors.toList());
         } else {
             if (activeUnit.isAI()) {
-                target = activeUnit.getAI().selectTarget(troop.aliveCount(), numTarget);
+                target = activeUnit.getAI().selectTarget(candidates.size(), numTarget);
             } else {
-                Writer.writeTargets(numTarget, troop);
+                Writer.writeTargets(numTarget, candidates);
                 target = Reader.readTarget();
             }
         }
 
         return target;
+    }
+
+    public static String getPrefix(Unit unit) {
+        return unit.getName().substring(0, 3);
     }
 
     public static List<String> getTargetUnitsName(List<Unit> units, List<Integer> targets) {
