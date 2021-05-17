@@ -19,7 +19,7 @@ public class Unit implements Target {
     private StateBase state;
     private boolean isPetrified;
     private boolean isCheeredUp;
-    private List<Unit> curse;
+    private Curse curse;
     private int onePunchDamage;
     private AI ai;
 
@@ -32,7 +32,7 @@ public class Unit implements Target {
         this.state = new Normal(this);
         this.isPetrified = false;
         this.isCheeredUp = false;
-        this.curse = new ArrayList<Unit>();
+        this.curse = new Curse();
         this.ai = ai;
         onePunchDamage = 0;
     }
@@ -114,20 +114,16 @@ public class Unit implements Target {
         return state;
     }
 
+    public Curse getCurser() {
+        return curse;
+    }
+
     public int getOnePunchDamage() {
         return onePunchDamage;
     }
 
-    public void addCurse(Unit curser) {
-        if (!curse.contains(curser)) {
-            curse.add(curser);
-        }
-    }
-
     private void die() {
-        for (Unit curser : curse) {
-            curser.increaseHp(magicPoint);
-        }
+        curse.curseEffect(this);
         Writer.writeDies(this);
     }
 

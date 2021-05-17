@@ -1,7 +1,6 @@
 package Skills;
 
 import java.util.List;
-import java.util.ArrayList;
 import Entities.Troop;
 import Entities.Unit;
 import Utils.Utils;
@@ -27,7 +26,7 @@ public class Curse extends SkillBase {
         Writer.writePerformMessage(this, activeUnit, availableTargets, indices);
 
         Unit target = availableTargets.get(indices.get(0));
-        target.addCurse(activeUnit);
+        target.getCurser().addCurser(activeUnit);
     }
 
     @Override
