@@ -28,9 +28,9 @@ public class Punch extends SkillBase {
         Writer.writePerformMessage(this, activeUnit, availableTargets, indices);
 
         OnePunch onePunch = new OnePunch();
-        onePunch.perform(activeUnit); // record how much damage OnePunch deals
-        int totalDamage = totalDamage(activeUnit) + activeUnit.getOnePunchDamage();
         Unit targetUnit = availableTargets.get(indices.get(0));
+        onePunch.perform(targetUnit);
+        int totalDamage = totalDamage(activeUnit) + targetUnit.getOnePunchDamage();
 
         Writer.writeDamage(totalDamage, activeUnit, targetUnit);
         targetUnit.decreaseHp(totalDamage);

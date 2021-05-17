@@ -131,7 +131,6 @@ public class Unit implements Target {
         Writer.writeDies(this);
     }
 
-    /* Change the functions purpose to record how much damage OnePunch is going to cause the enemy */
     @Override
     public void takeOnePunchDamage(int damage) {
         onePunchDamage = damage;

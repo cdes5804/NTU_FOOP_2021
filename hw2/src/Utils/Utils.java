@@ -36,7 +36,6 @@ public final class Utils {
             }
         }
 
-        //AI newAI = (ai == null ? null : new AI());
         return new Unit(hp, mp, strength, name, skills, ai);
     }
 
