@@ -18,7 +18,9 @@ public class Curse {
 
     public void curseEffect(Unit dyingUnit) {
         for (Unit curser : cursers) {
-            curser.increaseHp(dyingUnit.getMp());
+            if (curser.isAlive()) {
+                curser.increaseHp(dyingUnit.getMp());
+            }
         }
     }
 }
