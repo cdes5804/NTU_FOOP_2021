@@ -22,18 +22,17 @@ public class Punch extends SkillBase {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        List<Unit> availableTargets = Utils.getAvailableTargets(activeUnit, oppositeTroop);
-        List<Integer> indices = Utils.getTargets(activeUnit, numTarget, availableTargets);
+        List<Unit> targets = Utils.getTargets(activeUnit, numTarget, oppositeTroop.getUnits());
 
-        Writer.writePerformMessage(this, activeUnit, availableTargets, indices);
+        Writer.writePerformMessage(this, activeUnit, targets);
 
         OnePunch onePunch = new OnePunch();
-        Unit targetUnit = availableTargets.get(indices.get(0));
-        onePunch.perform(targetUnit);
-        int totalDamage = totalDamage(activeUnit) + targetUnit.getOnePunchDamage();
+        Unit target = targets.get(0);
+        onePunch.perform(target);
+        int totalDamage = totalDamage(activeUnit) + target.getOnePunchDamage();
 
-        Writer.writeDamage(totalDamage, activeUnit, targetUnit);
-        targetUnit.decreaseHp(totalDamage);
+        Writer.writeDamage(totalDamage, activeUnit, target);
+        target.decreaseHp(totalDamage);
     }
 
     @Override

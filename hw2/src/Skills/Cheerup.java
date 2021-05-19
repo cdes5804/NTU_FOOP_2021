@@ -21,13 +21,11 @@ public class Cheerup extends SkillBase {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        List<Unit> availableTargets = Utils.getAvailableTargets(activeUnit, activeTroop);
-        List<Integer> indices = Utils.getTargets(activeUnit, numTarget, availableTargets);
+        List<Unit> targets = Utils.getTargets(activeUnit, numTarget, activeTroop.getUnits());
 
-        Writer.writePerformMessage(this, activeUnit, availableTargets, indices);
+        Writer.writePerformMessage(this, activeUnit, targets);
 
-        for (int index : indices) {
-            Unit target = availableTargets.get(index);
+        for (Unit target : targets) {
             target.setState(new States.Cheerup(target));
         }
     }

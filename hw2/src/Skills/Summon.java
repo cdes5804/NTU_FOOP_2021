@@ -21,7 +21,7 @@ public class Summon extends SkillBase {
     @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
-        Writer.writePerformMessage(this, activeUnit, null, null);
+        Writer.writePerformMessage(this, activeUnit, null);
         /* Slime stats */
         int hp = 100;
         int mp = 0;

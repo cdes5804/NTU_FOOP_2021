@@ -19,12 +19,11 @@ public class BasicAttack extends SkillBase {
 
     @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
-        List<Unit> availableTargets = Utils.getAvailableTargets(activeUnit, oppositeTroop);
-        List<Integer> indices = Utils.getTargets(activeUnit, numTarget, availableTargets);
+        List<Unit> targets = Utils.getTargets(activeUnit, numTarget, oppositeTroop.getUnits());
 
-        Writer.writePerformMessage(this, activeUnit, availableTargets, indices);
+        Writer.writePerformMessage(this, activeUnit, targets);
 
-        Unit targetUnit = availableTargets.get(indices.get(0));
+        Unit targetUnit = targets.get(0);
         Writer.writeDamage(totalDamage(activeUnit) + activeUnit.getStrength(), activeUnit, targetUnit);
         targetUnit.decreaseHp(totalDamage(activeUnit) + activeUnit.getStrength());
     }

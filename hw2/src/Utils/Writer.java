@@ -31,15 +31,15 @@ public class Writer {
         System.out.println(builder.toString().stripTrailing());
     }
 
-    public static void writePerformMessage(SkillBase skill, Unit activeUnit, List<Unit> units, List<Integer> targets) {
+    public static void writePerformMessage(SkillBase skill, Unit activeUnit, List<Unit> targets) {
         if (skill.toString().equals("Basic Attack")) {
-            Unit target = units.get(targets.get(0));
+            Unit target = targets.get(0);
             System.out.printf("%s attacks %s.\n", activeUnit.getName(), target.getName());
         } else {
-            if (skill.getDamage() == 0 && targets == null) {
+            if (targets == null) {
                 System.out.printf("%s uses %s.\n", activeUnit.getName(), skill.toString());
             } else {
-                List<String> targetNames = Utils.getTargetUnitsName(units, targets);
+                List<String> targetNames = Utils.getTargetUnitsName(targets);
                 String message = String.format("%s uses %s on ", activeUnit.getName(), skill.toString())
                                  + String.join(", ", targetNames) + ".";
 

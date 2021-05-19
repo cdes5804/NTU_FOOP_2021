@@ -2,6 +2,7 @@ package Skills;
 
 import java.util.stream.*;
 import java.util.List;
+import java.util.Collection;
 import Entities.Troop;
 import Entities.Unit;
 import Utils.Utils;
@@ -9,7 +10,7 @@ import Utils.Writer;
 
 public class SelfExplosion extends SkillBase {
     public SelfExplosion() {
-        super(200, 0, 150, 0);
+        super(200, -1, 150, 0);
     }
 
     @Override
@@ -23,16 +24,15 @@ public class SelfExplosion extends SkillBase {
 
         Troop troopOne = activeTroop.getUnits().get(0).getName().equals("[1]Hero") ? activeTroop : oppositeTroop;
         Troop troopTwo = activeTroop.getUnits().get(0).getName().equals("[1]Hero") ? oppositeTroop : activeTroop;
+        List<Unit> allUnits = Stream.of(troopOne.getUnits(), troopTwo.getUnits()).flatMap(Collection::stream).collect(Collectors.toList());
 
-        List<Unit> allUnits = Stream.concat(Utils.getAvailableTargets(activeUnit, troopOne).stream().filter(unit -> unit != activeUnit),
-                                            Utils.getAvailableTargets(activeUnit, troopTwo).stream().filter(unit -> unit != activeUnit))
-                                    .collect(Collectors.toList());
+        List<Unit> targets = Utils.getAvailableTargets(activeUnit, allUnits);
         
-        Writer.writePerformMessage(this, activeUnit, allUnits, null);
+        Writer.writePerformMessage(this, activeUnit, targets);
 
-        for (Unit unit : allUnits) {
-            Writer.writeDamage(totalDamage(activeUnit), activeUnit, unit);
-            unit.decreaseHp(totalDamage(activeUnit));
+        for (Unit target : targets) {
+            Writer.writeDamage(totalDamage(activeUnit), activeUnit, target);
+            target.decreaseHp(totalDamage(activeUnit));
         }
 
         activeUnit.decreaseHp(activeUnit.getHp());

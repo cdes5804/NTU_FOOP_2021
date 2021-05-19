@@ -20,12 +20,11 @@ public class Curse extends SkillBase {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        List<Unit> availableTargets = Utils.getAvailableTargets(activeUnit, oppositeTroop);
-        List<Integer> indices = Utils.getTargets(activeUnit, numTarget, availableTargets);
+        List<Unit> targets = Utils.getTargets(activeUnit, numTarget, oppositeTroop.getUnits());
 
-        Writer.writePerformMessage(this, activeUnit, availableTargets, indices);
+        Writer.writePerformMessage(this, activeUnit, targets);
 
-        Unit target = availableTargets.get(indices.get(0));
+        Unit target = targets.get(0);
         target.getCurser().addCurser(activeUnit);
     }
 

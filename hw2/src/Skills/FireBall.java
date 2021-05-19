@@ -8,7 +8,7 @@ import Utils.Writer;
 
 public class FireBall extends SkillBase {
     public FireBall() {
-        super(50, 0, 50, 0);
+        super(50, -1, 50, 0);
     }
 
     @Override
@@ -19,11 +19,11 @@ public class FireBall extends SkillBase {
     @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
-        List<Unit> availableTargets = Utils.getAvailableTargets(activeUnit, oppositeTroop);
+        List<Unit> targets = Utils.getAvailableTargets(activeUnit, oppositeTroop.getUnits());
 
-        Writer.writePerformMessage(this, activeUnit, availableTargets, null);
+        Writer.writePerformMessage(this, activeUnit, targets);
 
-        for (Unit unit : availableTargets) {
+        for (Unit unit : targets) {
             Writer.writeDamage(totalDamage(activeUnit), activeUnit, unit);
             unit.decreaseHp(totalDamage(activeUnit));
         }

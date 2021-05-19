@@ -106,10 +106,10 @@ public final class Utils {
         return skill;
     }
 
-    public static List<Unit> getAvailableTargets(Unit activeUnit, Troop troop) {
+    public static List<Unit> getAvailableTargets(Unit activeUnit, List<Unit> units) {
         List<Unit> availableUnits = new ArrayList<Unit>();
 
-        for (Unit unit : troop.getUnits()) {
+        for (Unit unit : units) {
             if (unit.isAlive() && unit != activeUnit) {
                 availableUnits.add(unit);
             }
@@ -118,38 +118,40 @@ public final class Utils {
         return availableUnits;
     }
 
-    public static List<Integer> getTargets(Unit activeUnit, int numTarget, List<Unit> candidates) {
-        List<Integer> target = new ArrayList<Integer>();
+    public static List<Unit> getTargets(Unit activeUnit, int numTarget, List<Unit> candidates) {
+        List<Unit> availableUnits = getAvailableTargets(activeUnit, candidates);
+        List<Unit> targets = new ArrayList<Unit>();
 
-        if (candidates.size() <= numTarget) {
-            target = IntStream.range(0, candidates.size()).boxed().collect(Collectors.toList());
+        if (availableUnits.size() <= numTarget) {
+            targets.addAll(availableUnits);
         } else {
+            List<Integer> indices = null;
             if (activeUnit.isAI()) {
-                target = activeUnit.getAI().selectTarget(candidates.size(), numTarget);
+                indices = activeUnit.getAI().selectTarget(availableUnits.size(), numTarget);
+                for (int index : indices) {
+                    targets.add(availableUnits.get(index));
+                }
             } else {
-                Writer.writeTargets(numTarget, candidates);
-                target = Reader.readTarget();
+                Writer.writeTargets(numTarget, availableUnits);
+                indices = Reader.readTarget();
+                for (int index : indices) {
+                    targets.add(availableUnits.get(index));
+                }
             }
         }
 
-        return target;
+        return targets;
     }
 
     public static String getPrefix(Unit unit) {
         return unit.getName().substring(0, 3);
     }
 
-    public static List<String> getTargetUnitsName(List<Unit> units, List<Integer> targets) {
+    public static List<String> getTargetUnitsName(List<Unit> units) {
         List<String> names = new ArrayList<String>();
 
-        if (targets == null) {
-            for (Unit unit : units) {
-                names.add(unit.getName());
-            }
-        } else {
-            for (int index : targets) {
-                names.add(units.get(index).getName());
-            }
+        for (Unit unit : units) {
+            names.add(unit.getName());
         }
 
         return names;

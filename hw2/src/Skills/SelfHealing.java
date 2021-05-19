@@ -18,7 +18,7 @@ public class SelfHealing extends SkillBase {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        Writer.writePerformMessage(this, activeUnit, null, null);
+        Writer.writePerformMessage(this, activeUnit, null);
 
         activeUnit.increaseHp(heal);
     }
