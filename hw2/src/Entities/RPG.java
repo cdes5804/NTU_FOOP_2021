@@ -9,12 +9,10 @@ import tw.waterball.foop.hw2.provided.AI;
 public class RPG {
     Troop troopOne;
     Troop troopTwo;
-    AI ai;
-
+    
     public RPG(AI ai, List<SkillBase> allowedSkills) {
         troopOne = Utils.getTroop(allowedSkills, "[1]", ai);
         troopTwo = Utils.getTroop(allowedSkills, "[2]", ai);
-        this.ai = ai;
     }
 
     public void start() {
