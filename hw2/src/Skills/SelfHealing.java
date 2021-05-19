@@ -10,7 +10,7 @@ public class SelfHealing extends SkillBase {
     }
 
     @Override
-    public SkillBase create() {
+    public SelfHealing create() {
         return new SelfHealing();
     }
 
