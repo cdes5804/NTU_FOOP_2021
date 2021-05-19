@@ -12,4 +12,9 @@ public abstract class PatternBase implements Comparable<PatternBase> {
     protected PatternBase(List<Card> cards) {
         this.cards = cards;
     }
+
+    @Override
+    public String toString() {
+        return "";
+    }
 }

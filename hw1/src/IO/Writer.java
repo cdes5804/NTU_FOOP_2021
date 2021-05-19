@@ -31,25 +31,9 @@ public class Writer {
         System.out.println(cards.toString().stripTrailing());
     }
 
-    public static void writeValidPlay(Player player, PatternBase pattern) throws IllegalAccessError {
-        String patternName = "";
+    public static void writeValidPlay(Player player, PatternBase pattern) {
+        String patternName = pattern.toString();
         StringBuilder playString = new StringBuilder();
-        switch (pattern.getClass().getSimpleName()) {
-            case "Single":
-                patternName = "single";
-                break;
-            case "Pair":
-                patternName = "pair";
-                break;
-            case "Straight":
-                patternName = "straight";
-                break;
-            case "FullHouse":
-                patternName = "full house";
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid Class");
-        }
 
         playString.append(String.format("Player %s plays a %s ", player.name, patternName));
         for (Card card : pattern.cards) {

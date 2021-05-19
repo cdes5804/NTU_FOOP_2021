@@ -17,4 +17,9 @@ public final class Single extends PatternBase {
         o = (Single)o;
         return new Card.CardComparator().compare(this.cards.get(0), o.cards.get(0));
     }
+
+    @Override
+    public String toString() {
+        return "single";
+    }
 }

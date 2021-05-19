@@ -32,4 +32,9 @@ public final class FullHouse extends PatternBase {
 
         return new Card.CardComparator().compare(this.cards.get(selfBiggestInTriple), o.cards.get(otherBiggestInTriple));
     }
+
+    @Override
+    public String toString() {
+        return "full house";
+    }
 }

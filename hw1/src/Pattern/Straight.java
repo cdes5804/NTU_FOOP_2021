@@ -17,4 +17,9 @@ public final class Straight extends PatternBase {
         o = (Straight)o;
         return new Card.CardComparator().compare(this.cards.get(4), o.cards.get(4));
     }
+
+    @Override
+    public String toString() {
+        return "straight";
+    }
 }

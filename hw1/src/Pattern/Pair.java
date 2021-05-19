@@ -17,4 +17,9 @@ public final class Pair extends PatternBase {
         o = (Pair)o;
         return new Card.CardComparator().compare(this.cards.get(1), o.cards.get(1));
     }
+
+    @Override
+    public String toString() {
+        return "pair";
+    }
 }
