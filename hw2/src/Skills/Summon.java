@@ -28,9 +28,7 @@ public class Summon extends SkillBase {
         int str = 50;
         List<SkillBase> skills = Arrays.asList(new BasicAttack());
 
-        AI newAI = (activeUnit.getAI() == null ? null : new AI());
-
-        Unit slime = new Unit(hp, mp, str, Utils.getPrefix(activeUnit) + "Slime", skills, newAI);
+        Unit slime = new Unit(hp, mp, str, Utils.getPrefix(activeUnit) + "Slime", skills, activeUnit.getAI());
         activeTroop.addAlly(slime);
     }
 

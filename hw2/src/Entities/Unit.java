@@ -1,26 +1,27 @@
 package Entities;
 
 import java.util.List;
+
+
 import java.util.ArrayList;
 import Skills.SkillBase;
 import States.StateBase;
+import Effects.EffectBase;
 import States.Normal;
 import Utils.Utils;
 import Utils.Writer;
-import tw.waterball.foop.hw2.provided.Target;
 import tw.waterball.foop.hw2.provided.AI;
 
-public class Unit implements Target {
+public class Unit {
     private int healthPoint;
     private int magicPoint;
     private int strength;
     private String name;
     private List<SkillBase> skills;
     private StateBase state;
-    private boolean isPetrified;
-    private boolean isCheeredUp;
-    private Curse curse;
-    private int onePunchDamage;
+    private boolean canMove;
+    private int bonusDamage;
+    private List<EffectBase> deathEffect;
     private AI ai;
 
     public Unit(int healthPoint, int magicPoint, int strength, String name, List<SkillBase> skills, AI ai) {
@@ -30,11 +31,10 @@ public class Unit implements Target {
         this.name = name;
         this.skills = skills;
         this.state = new Normal(this);
-        this.isPetrified = false;
-        this.isCheeredUp = false;
-        this.curse = new Curse();
+        this.canMove = true;
+        this.bonusDamage = 0;
+        this.deathEffect = new ArrayList<EffectBase>();
         this.ai = ai;
-        onePunchDamage = 0;
     }
 
     public boolean isAlive() {
@@ -89,20 +89,20 @@ public class Unit implements Target {
         return ai;
     }
 
-    public void setCheeredUp(boolean isCheeredUp) {
-        this.isCheeredUp = isCheeredUp;
+    public void setBonusDamage(int bonusDamage) {
+        this.bonusDamage = bonusDamage;
     }
 
-    public boolean isCheeredUp() {
-        return isCheeredUp;
+    public int getBonusDamage() {
+        return bonusDamage;
     }
 
-    public void setPetrified(boolean isPetrified) {
-        this.isPetrified = isPetrified;
+    public void setCanMove(boolean canMove) {
+        this.canMove = canMove;
     }
 
-    public boolean isPetrified() {
-        return isPetrified;
+    public boolean canMove() {
+        return canMove;
     }
 
     public void setState(StateBase state) {
@@ -114,21 +114,19 @@ public class Unit implements Target {
         return state;
     }
 
-    public Curse getCurser() {
-        return curse;
+    public List<EffectBase> getDeathEffect() {
+        return deathEffect;
     }
 
-    public int getOnePunchDamage() {
-        return onePunchDamage;
+    public void addDeathEffect(EffectBase effect) {
+        deathEffect.add(effect);
     }
 
     private void die() {
-        curse.curseEffect(this);
         Writer.writeDies(this);
-    }
-
-    @Override
-    public void takeOnePunchDamage(int damage) {
-        onePunchDamage = damage;
+        
+        for (EffectBase effect : deathEffect) {
+            effect.trigger();
+        }
     }
 }

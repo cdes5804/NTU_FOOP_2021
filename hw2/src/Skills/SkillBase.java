@@ -4,7 +4,7 @@ import Entities.Unit;
 import Entities.Troop;
 import tw.waterball.foop.hw2.provided.AI;
 
-public class SkillBase implements Action {
+public abstract class SkillBase implements Action {
     protected int requiredMp;
     protected int numTarget;
     protected int damage;
@@ -18,7 +18,7 @@ public class SkillBase implements Action {
     }
 
     public int totalDamage(Unit activeUnit) {
-        return damage + (activeUnit.isCheeredUp() ? 50 : 0);
+        return damage + activeUnit.getBonusDamage();
     }
 
     public int getDamage() {

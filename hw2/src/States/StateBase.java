@@ -2,7 +2,7 @@ package States;
 
 import Entities.Unit;
 
-public class StateBase implements Effect {
+public abstract class StateBase implements Effect {
     protected int remainingRound;
     protected Unit target;
 

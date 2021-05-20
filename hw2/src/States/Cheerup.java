@@ -9,12 +9,12 @@ public class Cheerup extends StateBase {
 
     @Override
     public void takeEffect() {
-        target.setCheeredUp(true);
+        target.setBonusDamage(50);
     }
 
     @Override
     public void clearState() {
-        target.setCheeredUp(false);
+        target.setBonusDamage(0);
     }
 
     @Override

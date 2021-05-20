@@ -9,12 +9,12 @@ public class Petrochemical extends StateBase {
 
     @Override
     public void takeEffect() {
-        target.setPetrified(true);
+        target.setCanMove(false);
     }
 
     @Override
     public void clearState() {
-        target.setPetrified(false);
+        target.setCanMove(true);
     }
 
     @Override

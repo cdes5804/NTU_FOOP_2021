@@ -27,12 +27,6 @@ public class Troop {
        return units.stream().filter(unit -> unit.isAlive()).toArray().length;
     }
 
-    public void updateUnitsState() {
-        for (Unit unit : units) {
-            unit.getState().decreaseRemainingRound();
-        }
-    }
-
     public void action(Troop oppositeTroop) {
         int current = 0;
         
@@ -44,7 +38,7 @@ public class Troop {
 
                 unit.getState().takeEffect();
 
-                if (unit.isAlive() && !unit.isPetrified()) {
+                if (unit.isAlive() && unit.canMove()) {
                     unit.action(this, oppositeTroop);
                 }
 

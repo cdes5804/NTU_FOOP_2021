@@ -16,7 +16,7 @@ public class RPG {
     }
 
     public void start() {
-        while (isHeroAlive() && isTroopAlive()) {
+        while (isTroopAlive()) {
             Round round = new Round(troopOne, troopTwo);
             round.start();
         }
@@ -30,10 +30,6 @@ public class RPG {
 
     private boolean isVictory()  {
         return !troopOne.isAnnihilated();
-    }
-
-    private boolean isHeroAlive() {
-        return troopOne.getUnits().get(0).isAlive();
     }
 
     private boolean isTroopAlive() {

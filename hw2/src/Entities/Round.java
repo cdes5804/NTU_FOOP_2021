@@ -13,6 +13,12 @@ public class Round {
         return troopOne.isAnnihilated() || troopTwo.isAnnihilated();
     }
 
+    private void updateUnitsState(Troop troop) {
+        for (Unit unit : troop.getUnits()) {
+            unit.getState().decreaseRemainingRound();
+        }
+    }
+
     public void start() {
         troopOne.action(troopTwo);
         if (isRoundOver(troopOne, troopTwo)) {
@@ -24,7 +30,7 @@ public class Round {
             return;
         }
 
-        troopOne.updateUnitsState();
-        troopTwo.updateUnitsState();
+        updateUnitsState(troopOne);
+        updateUnitsState(troopTwo);
     }
 }
