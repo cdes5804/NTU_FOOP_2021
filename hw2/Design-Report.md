@@ -12,7 +12,7 @@ To remove AI (make every unit manual) or use another AI, create another class fo
 
 - Follow the Open-Close Principle on removing/adding the skill SelfHealing
 
-Simply remove or add `allowedSkills.add(new SelfHealing());` in *Main.java* to disable or enable the skill. SelfHealing only increments a unit's hp, Removing or adding the skill does not cause any side effect to other components.
+Simply remove or add `allowedSkills.add(new SelfHealing());` in *Main.java* to disable or enable the skill. SelfHealing only increments a unit's hp. Removing or adding the skill does not cause any side effect to other components.
 
 - Follow the Open-Close Principle on removing/adding the skill Summon
 
@@ -20,17 +20,17 @@ Simply remove or add `allowedSkills.add(new Summon(factory));` in *Main.java* to
 
 - Follow the Open-Close Principle on removing/adding the skill Petrochemical
 
-Simply remove or add `allowedSkills.add(new Petrochemical());` in *Main.java* to disable or enable the skill. Petrochemical will create a state with the same name, i.e. **Petrochemical**, that is attached to a unit. The **Petrochemical** state will be created if and only if the skill Petrochemical is used, so removing the skill automatically remove the state as well.
+Simply remove or add `allowedSkills.add(new Petrochemical());` in *Main.java* to disable or enable the skill. The skill will create a state with the same name, i.e. **Petrochemical**, which is itself an object that is attached to a unit. The **Petrochemical** state will be created if and only if the skill Petrochemical is used, so removing the skill automatically removes the state as well. The **Petrochemical** state will take action every round and set the **canMove** attribute in the unit to false.
 
 ## Bonus Design
 
 - Follow the Open-Close Principle on removing/adding the skill Curse
 
-Simply remove or add `allowedSkills.add(new Curse());` in *Main.java* to disable or enable the skill. There is an attribute **deathEffect** consisting of a list of **Effect**, which will be triggered when a unit is dead. The skill Curse will create a **Heal** effect in the target's **deathEffect**, so when the target is dead. Note that **Effect** is extensible. If there are other skills that will have an effect when a unit is dead, create a **Effect** class that inherits **EffectBase** and then it can be added in **deathEffect**.
+Simply remove or add `allowedSkills.add(new Curse());` in *Main.java* to disable or enable the skill. There is an attribute **deathEffect** consisting of a list of **Effect**, which will be triggered when a unit is dead. The skill Curse will create a **Heal** effect in the target's **deathEffect**, so when the target is dead, the **Heal** effect will heal the unit that used Curse. Note that **Effect** is extensible. If there are other skills that have an effect when a unit is dead, create a **Effect** class that inherits **EffectBase** and then it can be added in **deathEffect**.
 
 - Follow the Open-Close Principle on removing/adding the skill Cheerup
 
-Simply remove or add `allowedSkills.add(new Cheerup());` in *Main.java* to disable or enable the skill. The skill will set the **bonusDamage** attribute in a unit to 50. Note that **bonusDamage** can be set or accessed by other skills or objects as well.
+Simply remove or add `allowedSkills.add(new Cheerup());` in *Main.java* to disable or enable the skill. The skill will create a state with the same name, i.e. **Cheerup**, which is itself an object that is attached to a unit. The **Cheerup** state will be created if and only if the skill Cheerup is used, so removing the skill automatically removes the state as well. The **Cheerup** state will take action every round and set the **bonusDamage** attribute in the unit to 50.
 
 - Follow the Open-Close Principle on removing/adding the skill OnePunch
 
