@@ -2,7 +2,7 @@ package Entities;
 
 import java.util.List;
 import Skills.SkillBase;
-import Units.AIUnitFactory;
+import Units.UnitFactory;
 import Utils.Utils;
 import Utils.Writer;
 
@@ -10,7 +10,7 @@ public class RPG {
     Troop troopOne;
     Troop troopTwo;
     
-    public RPG(List<SkillBase> allowedSkills, AIUnitFactory factory) {
+    public RPG(List<SkillBase> allowedSkills, UnitFactory factory) {
         troopOne = Utils.getTroop(allowedSkills, "[1]", factory);
         troopTwo = Utils.getTroop(allowedSkills, "[2]", factory);
     }

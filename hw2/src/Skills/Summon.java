@@ -6,12 +6,12 @@ import Entities.Troop;
 import Units.Unit;
 import Utils.Utils;
 import Utils.Writer;
-import Units.AIUnitFactory;
+import Units.UnitFactory;
 
 public class Summon extends SkillBase {
-    private AIUnitFactory factory;
+    private UnitFactory factory;
 
-    public Summon(AIUnitFactory factory) {
+    public Summon(UnitFactory factory) {
         super(150, 0, 0, 0);
         this.factory = factory;
     }

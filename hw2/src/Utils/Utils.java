@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import Entities.Troop;
 import Skills.BasicAttack;
 import Skills.SkillBase;
-import Units.AIUnitFactory;
+import Units.UnitFactory;
 import Units.Unit;
 import Units.ManualUnit;
 
 public final class Utils {
-    private static Unit getUnit(List<SkillBase> allowedSkills, String prefix, AIUnitFactory factory) {
+    private static Unit getUnit(List<SkillBase> allowedSkills, String prefix, UnitFactory factory) {
         List<String> unitInfo = Reader.readUnit();
 
         if (unitInfo == null) {
@@ -42,7 +42,7 @@ public final class Utils {
         }
     }
 
-    public static Troop getTroop(List<SkillBase> allowedSkills, String prefix, AIUnitFactory factory) {
+    public static Troop getTroop(List<SkillBase> allowedSkills, String prefix, UnitFactory factory) {
         List<Unit> units = new ArrayList<Unit>();
 
         while (true) {
