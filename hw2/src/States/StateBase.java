@@ -1,6 +1,6 @@
 package States;
 
-import Entities.Unit;
+import Units.Unit;
 
 public abstract class StateBase implements Effect {
     protected int remainingRound;

@@ -1,10 +1,8 @@
 package Skills;
 
 import java.util.List;
-import java.util.ArrayList;
 import Entities.Troop;
-import Entities.Unit;
-import Utils.Utils;
+import Units.Unit;
 import Utils.Writer;
 import tw.waterball.foop.hw2.provided.OnePunch;
 import tw.waterball.foop.hw2.provided.Target;
@@ -42,7 +40,7 @@ public class Punch extends SkillBase {
         OnePunch onePunch = new OnePunch();
         PunchAccepter accepter = new PunchAccepter();
 
-        List<Unit> targets = Utils.getTargets(activeUnit, numTarget, oppositeTroop.getUnits());
+        List<Unit> targets = activeUnit.selectTargets(numTarget, oppositeTroop.getUnits());
 
         Writer.writePerformMessage(this, activeUnit, targets);
 

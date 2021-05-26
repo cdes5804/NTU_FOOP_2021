@@ -2,10 +2,9 @@ package Skills;
 
 import java.util.List;
 import Entities.Troop;
-import Entities.Unit;
+import Units.Unit;
 import Effects.EffectBase;
 import Effects.Heal;
-import Utils.Utils;
 import Utils.Writer;
 
 public class Curse extends SkillBase {
@@ -32,7 +31,7 @@ public class Curse extends SkillBase {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        List<Unit> targets = Utils.getTargets(activeUnit, numTarget, oppositeTroop.getUnits());
+        List<Unit> targets = activeUnit.selectTargets(numTarget, oppositeTroop.getUnits());
 
         Writer.writePerformMessage(this, activeUnit, targets);
 

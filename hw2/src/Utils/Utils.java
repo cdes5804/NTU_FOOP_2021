@@ -2,16 +2,15 @@ package Utils;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.*;
 import Entities.Troop;
-import Entities.Unit;
 import Skills.BasicAttack;
 import Skills.SkillBase;
-import tw.waterball.foop.hw2.provided.AI;
+import Units.AIUnitFactory;
+import Units.Unit;
+import Units.ManualUnit;
 
 public final class Utils {
-    private static Unit getUnit(List<SkillBase> allowedSkills, String prefix, AI ai) {
+    private static Unit getUnit(List<SkillBase> allowedSkills, String prefix, AIUnitFactory factory) {
         List<String> unitInfo = Reader.readUnit();
 
         if (unitInfo == null) {
@@ -35,15 +34,19 @@ public final class Utils {
                 }
             }
         }
-
-        return new Unit(hp, mp, strength, name, skills, ai);
+        
+        if (name.equals("[1]Hero")) {
+            return new ManualUnit(hp, mp, strength, name, skills);
+        } else {
+            return factory.create(hp, mp, strength, name, skills);
+        }
     }
 
-    public static Troop getTroop(List<SkillBase> allowedSkills, String prefix, AI ai) {
+    public static Troop getTroop(List<SkillBase> allowedSkills, String prefix, AIUnitFactory factory) {
         List<Unit> units = new ArrayList<Unit>();
 
         while (true) {
-            Unit unit = getUnit(allowedSkills, prefix, ai);
+            Unit unit = getUnit(allowedSkills, prefix, factory);
 
             if (unit == null) {
                 break;
@@ -55,55 +58,17 @@ public final class Utils {
         return new Troop(units);
     }
 
-    private static int countAvailableSkills(Unit unit) {
-        return unit.getSkills().stream().filter(skill -> skill.available(unit)).toArray().length;
-    }
+    public static List<Integer> getAvailableSkills(Unit unit) {
+        List<Integer> indices = new ArrayList<Integer>();
 
-    private static int getAvailableSkillOrderInAllSkills(Unit unit, int availableCount) {
-        int counter = 0;
-        for (int i = 0; i < unit.getSkills().size(); ++i) {
+        for (int i = 0; i < unit.getSkills().size(); i++) {
             SkillBase skill = unit.getSkills().get(i);
-
             if (skill.available(unit)) {
-                counter++;
-            }
-
-            if (counter == availableCount + 1) {
-                return i;
+                indices.add(i);
             }
         }
 
-        return 0; // should not happen
-    }
-
-    private static int getActionFromUserOrAI(Unit activeUnit) {
-        int action = 0;
-        Writer.writeSkills(activeUnit.getSkills());
-
-        if (activeUnit.isAI()) {
-            int availableSkillCount = countAvailableSkills(activeUnit);
-            List<Integer> actions = IntStream.range(0, availableSkillCount).boxed().collect(Collectors.toList());
-            int availableCount = activeUnit.getAI().selectAction(actions);
-            action = getAvailableSkillOrderInAllSkills(activeUnit, availableCount);
-        } else {
-            action = Reader.readAction();
-        }
-
-        return action;
-    }
-
-    public static SkillBase getAction(Unit activeUnit) {
-        SkillBase skill = null;
-
-        while (skill == null || !skill.available(activeUnit)) {
-            if (skill != null) {
-                Writer.writeUnavailableSkill();
-            }
-            int action = getActionFromUserOrAI(activeUnit);
-            skill = activeUnit.getSkills().get(action);
-        }
-
-        return skill;
+        return indices;
     }
 
     public static List<Unit> getAvailableTargets(Unit activeUnit, List<Unit> units) {
@@ -116,31 +81,6 @@ public final class Utils {
         }
 
         return availableUnits;
-    }
-
-    public static List<Unit> getTargets(Unit activeUnit, int numTarget, List<Unit> candidates) {
-        List<Unit> availableUnits = getAvailableTargets(activeUnit, candidates);
-        List<Unit> targets = new ArrayList<Unit>();
-
-        if (availableUnits.size() <= numTarget) {
-            targets.addAll(availableUnits);
-        } else {
-            List<Integer> indices = null;
-            if (activeUnit.isAI()) {
-                indices = activeUnit.getAI().selectTarget(availableUnits.size(), numTarget);
-                for (int index : indices) {
-                    targets.add(availableUnits.get(index));
-                }
-            } else {
-                Writer.writeTargets(numTarget, availableUnits);
-                indices = Reader.readTarget();
-                for (int index : indices) {
-                    targets.add(availableUnits.get(index));
-                }
-            }
-        }
-
-        return targets;
     }
 
     public static String getPrefix(Unit unit) {

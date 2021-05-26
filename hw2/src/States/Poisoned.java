@@ -1,6 +1,6 @@
 package States;
 
-import Entities.Unit;
+import Units.Unit;
 
 public class Poisoned extends StateBase {
     public Poisoned(Unit target) {

@@ -1,6 +1,6 @@
 package States;
 
-import Entities.Unit;
+import Units.Unit;
 
 public class Petrochemical extends StateBase {
     public Petrochemical(Unit target) {

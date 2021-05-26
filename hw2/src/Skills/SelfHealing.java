@@ -1,7 +1,7 @@
 package Skills;
 
 import Entities.Troop;
-import Entities.Unit;
+import Units.Unit;
 import Utils.Writer;
 
 public class SelfHealing extends SkillBase {

@@ -1,6 +1,6 @@
 package Effects;
 
-import Entities.Unit;
+import Units.Unit;
 
 public class Heal extends EffectBase {
     public Heal(Unit activator, Unit target, int damage, int heal) {

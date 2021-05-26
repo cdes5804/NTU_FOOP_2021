@@ -2,20 +2,23 @@ package Skills;
 
 import java.util.List;
 import java.util.Arrays;
-import Entities.Unit;
 import Entities.Troop;
+import Units.Unit;
 import Utils.Utils;
 import Utils.Writer;
-import tw.waterball.foop.hw2.provided.AI;
+import Units.AIUnitFactory;
 
 public class Summon extends SkillBase {
-    public Summon() {
+    private AIUnitFactory factory;
+
+    public Summon(AIUnitFactory factory) {
         super(150, 0, 0, 0);
+        this.factory = factory;
     }
 
     @Override
     public Summon create() {
-        return new Summon();
+        return new Summon(factory);
     }
 
     @Override
@@ -28,7 +31,7 @@ public class Summon extends SkillBase {
         int str = 50;
         List<SkillBase> skills = Arrays.asList(new BasicAttack());
 
-        Unit slime = new Unit(hp, mp, str, Utils.getPrefix(activeUnit) + "Slime", skills, activeUnit.getAI());
+        Unit slime = factory.create(hp, mp, str, Utils.getPrefix(activeUnit) + "Slime", skills);
         activeTroop.addAlly(slime);
     }
 

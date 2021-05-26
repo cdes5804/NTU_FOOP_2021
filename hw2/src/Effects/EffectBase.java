@@ -1,6 +1,6 @@
 package Effects;
 
-import Entities.Unit;
+import Units.Unit;
 
 public abstract class EffectBase {
     protected int damage;

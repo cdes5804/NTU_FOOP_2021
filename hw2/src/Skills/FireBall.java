@@ -2,7 +2,7 @@ package Skills;
 
 import java.util.List;
 import Entities.Troop;
-import Entities.Unit;
+import Units.Unit;
 import Utils.Utils;
 import Utils.Writer;
 

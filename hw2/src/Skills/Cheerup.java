@@ -1,10 +1,8 @@
 package Skills;
 
 import java.util.List;
-import java.util.ArrayList;
 import Entities.Troop;
-import Entities.Unit;
-import Utils.Utils;
+import Units.Unit;
 import Utils.Writer;
 
 public class Cheerup extends SkillBase {
@@ -21,7 +19,7 @@ public class Cheerup extends SkillBase {
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
 
-        List<Unit> targets = Utils.getTargets(activeUnit, numTarget, activeTroop.getUnits());
+        List<Unit> targets = activeUnit.selectTargets(numTarget, activeTroop.getUnits());
 
         Writer.writePerformMessage(this, activeUnit, targets);
 

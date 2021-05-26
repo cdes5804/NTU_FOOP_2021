@@ -1,6 +1,6 @@
 package States;
 
-import Entities.Unit;
+import Units.Unit;
 
 public class Cheerup extends StateBase {
     public Cheerup(Unit target) {

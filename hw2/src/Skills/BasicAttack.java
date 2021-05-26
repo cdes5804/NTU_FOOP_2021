@@ -1,10 +1,8 @@
 package Skills;
 
 import java.util.List;
-import java.util.ArrayList;
-import Entities.Unit;
 import Entities.Troop;
-import Utils.Utils;
+import Units.Unit;
 import Utils.Writer;
 
 public class BasicAttack extends SkillBase {
@@ -19,7 +17,7 @@ public class BasicAttack extends SkillBase {
 
     @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
-        List<Unit> targets = Utils.getTargets(activeUnit, numTarget, oppositeTroop.getUnits());
+        List<Unit> targets = activeUnit.selectTargets(numTarget, oppositeTroop.getUnits());
 
         Writer.writePerformMessage(this, activeUnit, targets);
 

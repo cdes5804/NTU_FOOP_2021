@@ -4,7 +4,7 @@ import java.util.stream.*;
 import java.util.List;
 import java.util.Collection;
 import Entities.Troop;
-import Entities.Unit;
+import Units.Unit;
 import Utils.Utils;
 import Utils.Writer;
 

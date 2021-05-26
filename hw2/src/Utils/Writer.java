@@ -1,10 +1,8 @@
 package Utils;
 
 import java.util.List;
-import java.util.ArrayList;
 import Skills.SkillBase;
-import Entities.Troop;
-import Entities.Unit;
+import Units.Unit;
 
 public class Writer {
     public static void writeSkills(List<SkillBase> skills) {

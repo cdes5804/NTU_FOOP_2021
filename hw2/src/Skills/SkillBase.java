@@ -1,7 +1,7 @@
 package Skills;
 
-import Entities.Unit;
 import Entities.Troop;
+import Units.Unit;
 import tw.waterball.foop.hw2.provided.AI;
 
 public abstract class SkillBase implements Action {
@@ -27,11 +27,6 @@ public abstract class SkillBase implements Action {
 
     public boolean available(Unit activeUnit) {
         return activeUnit.getMp() >= requiredMp;
-    }
-
-    @Override
-    public SkillBase create() {
-        return null;
     }
 
     @Override

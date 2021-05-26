@@ -2,17 +2,17 @@ package Entities;
 
 import java.util.List;
 import Skills.SkillBase;
+import Units.AIUnitFactory;
 import Utils.Utils;
 import Utils.Writer;
-import tw.waterball.foop.hw2.provided.AI;
 
 public class RPG {
     Troop troopOne;
     Troop troopTwo;
     
-    public RPG(AI ai, List<SkillBase> allowedSkills) {
-        troopOne = Utils.getTroop(allowedSkills, "[1]", ai);
-        troopTwo = Utils.getTroop(allowedSkills, "[2]", ai);
+    public RPG(List<SkillBase> allowedSkills, AIUnitFactory factory) {
+        troopOne = Utils.getTroop(allowedSkills, "[1]", factory);
+        troopTwo = Utils.getTroop(allowedSkills, "[2]", factory);
     }
 
     public void start() {

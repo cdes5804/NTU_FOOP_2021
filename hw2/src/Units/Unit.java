@@ -1,4 +1,4 @@
-package Entities;
+package Units;
 
 import java.util.List;
 
@@ -7,24 +7,22 @@ import java.util.ArrayList;
 import Skills.SkillBase;
 import States.StateBase;
 import Effects.EffectBase;
+import Entities.Troop;
 import States.Normal;
-import Utils.Utils;
 import Utils.Writer;
-import tw.waterball.foop.hw2.provided.AI;
 
-public class Unit {
-    private int healthPoint;
-    private int magicPoint;
-    private int strength;
-    private String name;
-    private List<SkillBase> skills;
-    private StateBase state;
-    private boolean canMove;
-    private int bonusDamage;
-    private List<EffectBase> deathEffect;
-    private AI ai;
+public abstract class Unit implements Action {
+    protected int healthPoint;
+    protected int magicPoint;
+    protected int strength;
+    protected String name;
+    protected List<SkillBase> skills;
+    protected StateBase state;
+    protected boolean canMove;
+    protected int bonusDamage;
+    protected List<EffectBase> deathEffect;
 
-    public Unit(int healthPoint, int magicPoint, int strength, String name, List<SkillBase> skills, AI ai) {
+    public Unit(int healthPoint, int magicPoint, int strength, String name, List<SkillBase> skills) {
         this.healthPoint = healthPoint;
         this.magicPoint = magicPoint;
         this.strength = strength;
@@ -34,7 +32,6 @@ public class Unit {
         this.canMove = true;
         this.bonusDamage = 0;
         this.deathEffect = new ArrayList<EffectBase>();
-        this.ai = ai;
     }
 
     public boolean isAlive() {
@@ -42,7 +39,7 @@ public class Unit {
     }
 
     public void action(Troop activeTroop, Troop oppositeTroop) {
-        SkillBase skill = Utils.getAction(this);
+        SkillBase skill = selectAction();
         skill.perform(this, activeTroop, oppositeTroop);
     }
 
@@ -79,14 +76,6 @@ public class Unit {
 
     public List<SkillBase> getSkills() {
         return skills;
-    }
-
-    public boolean isAI() {
-        return ai != null && !name.equals("[1]Hero");
-    }
-
-    public AI getAI() {
-        return ai;
     }
 
     public void setBonusDamage(int bonusDamage) {
