@@ -10,14 +10,14 @@ import Units.Unit;
 import Units.ManualUnit;
 
 public final class Utils {
-    private static Unit getUnit(List<Skill> allowedSkills, String prefix, UnitFactory factory) {
+    private static Unit getUnit(List<Skill> allowedSkills, UnitFactory factory) {
         List<String> unitInfo = Reader.readUnit();
 
         if (unitInfo == null) {
             return null;
         }
 
-        String name = prefix + unitInfo.get(0);
+        String name = unitInfo.get(0);
         int hp = Integer.parseInt(unitInfo.get(1));
         int mp = Integer.parseInt(unitInfo.get(2));
         int strength = Integer.parseInt(unitInfo.get(3));
@@ -35,27 +35,27 @@ public final class Utils {
             }
         }
         
-        if (name.equals("[1]Hero")) {
+        if (name.equals("Hero")) {
             return new ManualUnit(hp, mp, strength, name, skills);
         } else {
             return factory.create(hp, mp, strength, name, skills);
         }
     }
 
-    public static Troop getTroop(List<Skill> allowedSkills, String prefix, UnitFactory factory) {
-        List<Unit> units = new ArrayList<Unit>();
+    public static Troop getTroop(List<Skill> allowedSkills, int number, UnitFactory factory) {
+        Troop troop = new Troop(number);
 
         while (true) {
-            Unit unit = getUnit(allowedSkills, prefix, factory);
+            Unit unit = getUnit(allowedSkills, factory);
 
             if (unit == null) {
                 break;
             }
 
-            units.add(unit);
+            troop.addAlly(unit);
         }
 
-        return new Troop(units);
+        return troop;
     }
 
     public static List<Unit> getAvailableTargets(Unit activeUnit, List<Unit> units) {
@@ -81,10 +81,6 @@ public final class Utils {
         }
 
         return indices;
-    }
-
-    public static String getPrefix(Unit unit) {
-        return unit.getName().substring(0, 3);
     }
 
     public static List<String> getTargetUnitsName(List<Unit> units) {

@@ -3,7 +3,7 @@ package States;
 import Units.Unit;
 import Skills.Skill;
 
-public class Cheerup extends StateBase {
+public class Cheerup extends State {
     public Cheerup(Unit target) {
         super(target);
     }

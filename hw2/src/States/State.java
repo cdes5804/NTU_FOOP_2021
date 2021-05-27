@@ -2,11 +2,11 @@ package States;
 
 import Units.Unit;
 
-public abstract class StateBase implements Effect {
+public abstract class State implements Effect {
     protected int remainingRound;
     protected Unit target;
 
-    public StateBase(Unit target) {
+    public State(Unit target) {
         this.target = target;
         remainingRound = 3;
     }

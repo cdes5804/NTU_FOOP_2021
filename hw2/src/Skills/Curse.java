@@ -3,7 +3,7 @@ package Skills;
 import java.util.List;
 import Entities.Troop;
 import Units.Unit;
-import Effects.EffectBase;
+import Effects.Effect;
 import Effects.Heal;
 
 public class Curse extends Skill {
@@ -16,8 +16,8 @@ public class Curse extends Skill {
         return new Curse();
     }
 
-    private boolean hasExist(List<EffectBase> effects, Unit target) {
-        for (EffectBase effect : effects) {
+    private boolean hasExist(List<Effect> effects, Unit target) {
+        for (Effect effect : effects) {
             if (effect.getTarget() == target && effect.toString().equals("Heal")) {
                 return true;
             }

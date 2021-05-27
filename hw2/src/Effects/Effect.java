@@ -2,13 +2,13 @@ package Effects;
 
 import Units.Unit;
 
-public abstract class EffectBase {
+public abstract class Effect {
     protected int damage;
     protected int heal;
     protected Unit activator;
     protected Unit target;
 
-    public EffectBase(Unit activator, Unit target, int damage, int heal) {
+    public Effect(Unit activator, Unit target, int damage, int heal) {
         this.activator = activator;
         this.target = target;
         this.damage = damage;

@@ -1,17 +1,12 @@
 package Entities;
 
-import java.util.List;
-import Skills.Skill;
-import Units.UnitFactory;
-import Utils.Utils;
-
 public class RPG {
     Troop troopOne;
     Troop troopTwo;
     
-    public RPG(List<Skill> allowedSkills, UnitFactory factory) {
-        troopOne = Utils.getTroop(allowedSkills, "[1]", factory);
-        troopTwo = Utils.getTroop(allowedSkills, "[2]", factory);
+    public RPG(Troop troopOne, Troop troopTwo) {
+        this.troopOne = troopOne;
+        this.troopTwo = troopTwo;
     }
 
     public void start() {

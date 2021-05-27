@@ -30,7 +30,7 @@ public class Summon extends Skill {
         int str = 50;
         List<Skill> skills = Arrays.asList(new BasicAttack());
 
-        Unit slime = factory.create(hp, mp, str, Utils.getPrefix(activeUnit) + "Slime", skills);
+        Unit slime = factory.create(hp, mp, str, "Slime", skills);
         activeTroop.addAlly(slime);
     }
 

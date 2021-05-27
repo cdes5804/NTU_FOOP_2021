@@ -1,12 +1,10 @@
 package Units;
 
 import java.util.List;
-
-
 import java.util.ArrayList;
 import Skills.Skill;
-import States.StateBase;
-import Effects.EffectBase;
+import States.State;
+import Effects.Effect;
 import Entities.Troop;
 import States.Normal;
 
@@ -16,9 +14,9 @@ public abstract class Unit implements Action {
     protected int strength;
     protected String name;
     protected List<Skill> skills;
-    protected StateBase state;
+    protected State state;
     protected boolean canMove;
-    protected List<EffectBase> deathEffect;
+    protected List<Effect> deathEffect;
 
     public Unit(int healthPoint, int magicPoint, int strength, String name, List<Skill> skills) {
         this.healthPoint = healthPoint;
@@ -28,7 +26,7 @@ public abstract class Unit implements Action {
         this.skills = skills;
         this.state = new Normal(this);
         this.canMove = true;
-        this.deathEffect = new ArrayList<EffectBase>();
+        this.deathEffect = new ArrayList<Effect>();
     }
 
     public boolean isAlive() {
@@ -71,6 +69,10 @@ public abstract class Unit implements Action {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public List<Skill> getSkills() {
         return skills;
     }
@@ -83,27 +85,27 @@ public abstract class Unit implements Action {
         return canMove;
     }
 
-    public void setState(StateBase state) {
+    public void setState(State state) {
         this.state.clearState();
         this.state = state;
     }
 
-    public StateBase getState() {
+    public State getState() {
         return state;
     }
 
-    public List<EffectBase> getDeathEffect() {
+    public List<Effect> getDeathEffect() {
         return deathEffect;
     }
 
-    public void addDeathEffect(EffectBase effect) {
+    public void addDeathEffect(Effect effect) {
         deathEffect.add(effect);
     }
 
     private void die() {
         System.out.printf("%s dies.\n", name);
         
-        for (EffectBase effect : deathEffect) {
+        for (Effect effect : deathEffect) {
             effect.trigger();
         }
     }
