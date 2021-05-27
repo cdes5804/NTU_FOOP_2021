@@ -4,9 +4,8 @@ import java.util.List;
 import Entities.Troop;
 import Units.Unit;
 import Utils.Utils;
-import Utils.Writer;
 
-public class FireBall extends SkillBase {
+public class FireBall extends Skill {
     public FireBall() {
         super(50, -1, 50, 0);
     }
@@ -21,11 +20,11 @@ public class FireBall extends SkillBase {
         activeUnit.decreaseMp(requiredMp);
         List<Unit> targets = Utils.getAvailableTargets(activeUnit, oppositeTroop.getUnits());
 
-        Writer.writePerformMessage(this, activeUnit, targets);
+        printPerformMessage(activeUnit, targets);
 
         for (Unit unit : targets) {
-            Writer.writeDamage(totalDamage(activeUnit), activeUnit, unit);
-            unit.decreaseHp(totalDamage(activeUnit));
+            printDamageMessage(getDamage(), activeUnit, unit);
+            unit.decreaseHp(getDamage());
         }
     }
 

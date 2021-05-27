@@ -1,6 +1,7 @@
 package States;
 
 import Units.Unit;
+import Skills.Skill;
 
 public class Cheerup extends StateBase {
     public Cheerup(Unit target) {
@@ -9,12 +10,16 @@ public class Cheerup extends StateBase {
 
     @Override
     public void takeEffect() {
-        target.setBonusDamage(50);
+        for (Skill skill : target.getSkills()) {
+            skill.setDamageDelta(50);
+        }
     }
 
     @Override
     public void clearState() {
-        target.setBonusDamage(0);
+        for (Skill skill : target.getSkills()) {
+            skill.setDamageDelta(0);
+        }
     }
 
     @Override

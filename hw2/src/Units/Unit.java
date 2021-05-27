@@ -4,25 +4,23 @@ import java.util.List;
 
 
 import java.util.ArrayList;
-import Skills.SkillBase;
+import Skills.Skill;
 import States.StateBase;
 import Effects.EffectBase;
 import Entities.Troop;
 import States.Normal;
-import Utils.Writer;
 
 public abstract class Unit implements Action {
     protected int healthPoint;
     protected int magicPoint;
     protected int strength;
     protected String name;
-    protected List<SkillBase> skills;
+    protected List<Skill> skills;
     protected StateBase state;
     protected boolean canMove;
-    protected int bonusDamage;
     protected List<EffectBase> deathEffect;
 
-    public Unit(int healthPoint, int magicPoint, int strength, String name, List<SkillBase> skills) {
+    public Unit(int healthPoint, int magicPoint, int strength, String name, List<Skill> skills) {
         this.healthPoint = healthPoint;
         this.magicPoint = magicPoint;
         this.strength = strength;
@@ -30,7 +28,6 @@ public abstract class Unit implements Action {
         this.skills = skills;
         this.state = new Normal(this);
         this.canMove = true;
-        this.bonusDamage = 0;
         this.deathEffect = new ArrayList<EffectBase>();
     }
 
@@ -39,7 +36,7 @@ public abstract class Unit implements Action {
     }
 
     public void action(Troop activeTroop, Troop oppositeTroop) {
-        SkillBase skill = selectAction();
+        Skill skill = selectAction();
         skill.perform(this, activeTroop, oppositeTroop);
     }
 
@@ -74,16 +71,8 @@ public abstract class Unit implements Action {
         return name;
     }
 
-    public List<SkillBase> getSkills() {
+    public List<Skill> getSkills() {
         return skills;
-    }
-
-    public void setBonusDamage(int bonusDamage) {
-        this.bonusDamage = bonusDamage;
-    }
-
-    public int getBonusDamage() {
-        return bonusDamage;
     }
 
     public void setCanMove(boolean canMove) {
@@ -112,7 +101,7 @@ public abstract class Unit implements Action {
     }
 
     private void die() {
-        Writer.writeDies(this);
+        System.out.printf("%s dies.\n", name);
         
         for (EffectBase effect : deathEffect) {
             effect.trigger();

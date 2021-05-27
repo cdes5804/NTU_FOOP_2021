@@ -6,9 +6,8 @@ import java.util.Collection;
 import Entities.Troop;
 import Units.Unit;
 import Utils.Utils;
-import Utils.Writer;
 
-public class SelfExplosion extends SkillBase {
+public class SelfExplosion extends Skill {
     public SelfExplosion() {
         super(200, -1, 150, 0);
     }
@@ -28,11 +27,11 @@ public class SelfExplosion extends SkillBase {
 
         List<Unit> targets = Utils.getAvailableTargets(activeUnit, allUnits);
         
-        Writer.writePerformMessage(this, activeUnit, targets);
+        printPerformMessage(activeUnit, targets);
 
         for (Unit target : targets) {
-            Writer.writeDamage(totalDamage(activeUnit), activeUnit, target);
-            target.decreaseHp(totalDamage(activeUnit));
+            printDamageMessage(getDamage(), activeUnit, target);
+            target.decreaseHp(getDamage());
         }
 
         activeUnit.decreaseHp(activeUnit.getHp());

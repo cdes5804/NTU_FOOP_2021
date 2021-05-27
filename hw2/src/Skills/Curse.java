@@ -5,9 +5,8 @@ import Entities.Troop;
 import Units.Unit;
 import Effects.EffectBase;
 import Effects.Heal;
-import Utils.Writer;
 
-public class Curse extends SkillBase {
+public class Curse extends Skill {
     public Curse() {
         super(100, 1, 0, 0);
     }
@@ -33,7 +32,7 @@ public class Curse extends SkillBase {
 
         List<Unit> targets = activeUnit.selectTargets(numTarget, oppositeTroop.getUnits());
 
-        Writer.writePerformMessage(this, activeUnit, targets);
+        printPerformMessage(activeUnit, targets);
 
         Unit target = targets.get(0);
         if (!hasExist(target.getDeathEffect(), target)) {

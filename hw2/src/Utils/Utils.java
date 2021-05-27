@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.ArrayList;
 import Entities.Troop;
 import Skills.BasicAttack;
-import Skills.SkillBase;
+import Skills.Skill;
 import Units.UnitFactory;
 import Units.Unit;
 import Units.ManualUnit;
 
 public final class Utils {
-    private static Unit getUnit(List<SkillBase> allowedSkills, String prefix, UnitFactory factory) {
+    private static Unit getUnit(List<Skill> allowedSkills, String prefix, UnitFactory factory) {
         List<String> unitInfo = Reader.readUnit();
 
         if (unitInfo == null) {
@@ -21,13 +21,13 @@ public final class Utils {
         int hp = Integer.parseInt(unitInfo.get(1));
         int mp = Integer.parseInt(unitInfo.get(2));
         int strength = Integer.parseInt(unitInfo.get(3));
-        List<SkillBase> skills = new ArrayList<SkillBase>();
+        List<Skill> skills = new ArrayList<Skill>();
 
         skills.add(new BasicAttack());
 
         for (int i = 4; i < unitInfo.size(); ++i) {
             String skillName = unitInfo.get(i);
-            for (SkillBase skill : allowedSkills) {
+            for (Skill skill : allowedSkills) {
                 if (skill.toString().equals(skillName)) {
                     skills.add(skill.create());
                     break;
@@ -42,7 +42,7 @@ public final class Utils {
         }
     }
 
-    public static Troop getTroop(List<SkillBase> allowedSkills, String prefix, UnitFactory factory) {
+    public static Troop getTroop(List<Skill> allowedSkills, String prefix, UnitFactory factory) {
         List<Unit> units = new ArrayList<Unit>();
 
         while (true) {
@@ -58,19 +58,6 @@ public final class Utils {
         return new Troop(units);
     }
 
-    public static List<Integer> getAvailableSkills(Unit unit) {
-        List<Integer> indices = new ArrayList<Integer>();
-
-        for (int i = 0; i < unit.getSkills().size(); i++) {
-            SkillBase skill = unit.getSkills().get(i);
-            if (skill.available(unit)) {
-                indices.add(i);
-            }
-        }
-
-        return indices;
-    }
-
     public static List<Unit> getAvailableTargets(Unit activeUnit, List<Unit> units) {
         List<Unit> availableUnits = new ArrayList<Unit>();
 
@@ -81,6 +68,19 @@ public final class Utils {
         }
 
         return availableUnits;
+    }
+
+    public static List<Integer> getAvailableSkills(Unit unit) {
+        List<Integer> indices = new ArrayList<Integer>();
+
+        for (int i = 0; i < unit.getSkills().size(); i++) {
+            Skill skill = unit.getSkills().get(i);
+            if (skill.available(unit)) {
+                indices.add(i);
+            }
+        }
+
+        return indices;
     }
 
     public static String getPrefix(Unit unit) {

@@ -2,25 +2,34 @@ package Units;
 
 import java.util.List;
 import java.util.ArrayList;
-import Utils.Writer;
 import Utils.Reader;
 import Utils.Utils;
-import Skills.SkillBase;
+import Skills.Skill;
 
 public class ManualUnit extends Unit {
-    public ManualUnit(int healthPoint, int magicPoint, int strength, String name, List<SkillBase> skills) {
+    public ManualUnit(int healthPoint, int magicPoint, int strength, String name, List<Skill> skills) {
         super(healthPoint, magicPoint, strength, name, skills);
     }
 
     @Override
-    public SkillBase selectAction() {
-        SkillBase skill = null;
+    public Skill selectAction() {
+        Skill skill = null;
 
         while (skill == null || !skill.available(this)) {
             if (skill != null) {
-                Writer.writeUnavailableSkill();
+                System.out.println("You can't perform the action: insufficient MP.");
             }
-            Writer.writeSkills(skills);
+
+            StringBuilder builder = new StringBuilder();
+            builder.append("Select an action:");
+            
+            for (int i = 0; i < skills.size(); ++i) {
+                builder.append(String.format(" (%d) ", i));
+                builder.append(skills.get(i).toString());
+            }
+
+            System.out.println(builder.toString().stripTrailing());
+
             int action = Reader.readAction();
             skill = skills.get(action);
         }
@@ -37,7 +46,15 @@ public class ManualUnit extends Unit {
         if (availableUnits.size() <= numTarget) {
             targets.addAll(availableUnits);
         } else {
-            Writer.writeTargets(numTarget, availableUnits);
+            StringBuilder builder = new StringBuilder();
+            builder.append(String.format("Select %d targets:", numTarget));
+            
+            for (int i = 0; i < availableUnits.size(); ++i) {
+                builder.append(String.format(" (%d) ", i));
+                builder.append(availableUnits.get(i).getName());
+            }
+
+            System.out.println(builder.toString().stripTrailing());
 
             List<Integer> indices = Reader.readTarget();
             for (int index : indices) {

@@ -1,16 +1,15 @@
 package Entities;
 
 import java.util.List;
-import Skills.SkillBase;
+import Skills.Skill;
 import Units.UnitFactory;
 import Utils.Utils;
-import Utils.Writer;
 
 public class RPG {
     Troop troopOne;
     Troop troopTwo;
     
-    public RPG(List<SkillBase> allowedSkills, UnitFactory factory) {
+    public RPG(List<Skill> allowedSkills, UnitFactory factory) {
         troopOne = Utils.getTroop(allowedSkills, "[1]", factory);
         troopTwo = Utils.getTroop(allowedSkills, "[2]", factory);
     }
@@ -22,9 +21,9 @@ public class RPG {
         }
 
         if (isVictory()) {
-            Writer.writeWin();
+            System.out.println("You win.");
         } else {
-            Writer.writeLose();
+            System.out.println("You lose.");
         }
     }
 

@@ -3,9 +3,8 @@ package Skills;
 import java.util.List;
 import Entities.Troop;
 import Units.Unit;
-import Utils.Writer;
 
-public class WaterBall extends SkillBase {
+public class WaterBall extends Skill {
     public WaterBall() {
         super(50, 1, 120, 1);
     }
@@ -21,12 +20,12 @@ public class WaterBall extends SkillBase {
 
         List<Unit> targets = activeUnit.selectTargets(numTarget, oppositeTroop.getUnits());
 
-        Writer.writePerformMessage(this, activeUnit, targets);
+        printPerformMessage(activeUnit, targets);
 
         Unit target = targets.get(0);
 
-        Writer.writeDamage(totalDamage(activeUnit), activeUnit, target);
-        target.decreaseHp(totalDamage(activeUnit));
+        printDamageMessage(getDamage(), activeUnit, target);
+        target.decreaseHp(getDamage());
     }
 
     @Override

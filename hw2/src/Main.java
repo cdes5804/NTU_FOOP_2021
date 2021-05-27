@@ -11,7 +11,7 @@ import tw.waterball.foop.hw2.provided.AI;
 public class Main {
     public static void main(String[] args) {
         AI ai = new AI();
-        List<SkillBase> allowedSkills = new ArrayList<SkillBase>();
+        List<Skill> allowedSkills = new ArrayList<Skill>();
         AIUnitFactory factory = new AIUnitFactory(ai);
 
         allowedSkills.add(new WaterBall());

@@ -3,9 +3,8 @@ package Skills;
 import java.util.List;
 import Entities.Troop;
 import Units.Unit;
-import Utils.Writer;
 
-public class Cheerup extends SkillBase {
+public class Cheerup extends Skill {
     public Cheerup() {
         super(100, 3, 0, 0);
     }
@@ -21,7 +20,7 @@ public class Cheerup extends SkillBase {
 
         List<Unit> targets = activeUnit.selectTargets(numTarget, activeTroop.getUnits());
 
-        Writer.writePerformMessage(this, activeUnit, targets);
+        printPerformMessage(activeUnit, targets);
 
         for (Unit target : targets) {
             target.setState(new States.Cheerup(target));

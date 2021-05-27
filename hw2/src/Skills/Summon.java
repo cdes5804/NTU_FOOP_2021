@@ -5,10 +5,9 @@ import java.util.Arrays;
 import Entities.Troop;
 import Units.Unit;
 import Utils.Utils;
-import Utils.Writer;
 import Units.UnitFactory;
 
-public class Summon extends SkillBase {
+public class Summon extends Skill {
     private UnitFactory factory;
 
     public Summon(UnitFactory factory) {
@@ -24,12 +23,12 @@ public class Summon extends SkillBase {
     @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         activeUnit.decreaseMp(requiredMp);
-        Writer.writePerformMessage(this, activeUnit, null);
+        printPerformMessage(activeUnit, null);
         /* Slime stats */
         int hp = 100;
         int mp = 0;
         int str = 50;
-        List<SkillBase> skills = Arrays.asList(new BasicAttack());
+        List<Skill> skills = Arrays.asList(new BasicAttack());
 
         Unit slime = factory.create(hp, mp, str, Utils.getPrefix(activeUnit) + "Slime", skills);
         activeTroop.addAlly(slime);
@@ -38,5 +37,10 @@ public class Summon extends SkillBase {
     @Override
     public String toString() {
         return "Summon";
+    }
+
+    @Override
+    protected void printPerformMessage(Unit activeUnit, List<Unit> targets) {
+        System.out.printf("%s uses %s.\n", activeUnit.getName(), toString());
     }
 }
