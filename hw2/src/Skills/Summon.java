@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Arrays;
 import Entities.Troop;
 import Units.Unit;
-import Utils.Utils;
 import Units.UnitFactory;
 
 public class Summon extends Skill {
