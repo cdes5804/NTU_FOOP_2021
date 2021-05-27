@@ -27,8 +27,7 @@ public class Troop {
     }
 
     public boolean isAnnihilated() {
-        return aliveCount() == 0
-               || (units.get(0).getName().equals("[1]Hero") && !units.get(0).isAlive());
+        return aliveCount() == 0;
     }
 
     public int aliveCount() {

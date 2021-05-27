@@ -12,7 +12,7 @@ public class Round {
     }
 
     private boolean isRoundOver() {
-        return troopOne.isAnnihilated() || troopTwo.isAnnihilated();
+        return troopTwo.isAnnihilated() || !troopOne.getUnits().get(0).isAlive();
     }
 
     private void updateUnitsState(Troop troop) {
