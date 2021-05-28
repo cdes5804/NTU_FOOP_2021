@@ -1,26 +1,33 @@
 package Entities;
 
 import java.util.List;
+import java.util.ArrayList;
 import Units.Unit;
 
 public class Troop {
     private List<Unit> units;
+    private int troopNumber;
 
-    public Troop(List<Unit> units) {
-        this.units = units;
+    public Troop(int number) {
+        this.units = new ArrayList<Unit>();
+        this.troopNumber = number;
     }
 
     public List<Unit> getUnits() {
         return units;
     }
 
+    public String getTroopNumber() {
+        return "[" + Integer.toString(troopNumber) + "]";
+    }
+
     public void addAlly(Unit unit) {
+        unit.setName(getTroopNumber() + unit.getName());
         this.units.add(unit);
     }
 
     public boolean isAnnihilated() {
-        return aliveCount() == 0
-               || (units.get(0).getName().equals("[1]Hero") && !units.get(0).isAlive());
+        return aliveCount() == 0;
     }
 
     public int aliveCount() {

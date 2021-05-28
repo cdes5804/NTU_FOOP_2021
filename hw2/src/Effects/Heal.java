@@ -2,7 +2,7 @@ package Effects;
 
 import Units.Unit;
 
-public class Heal extends EffectBase {
+public class Heal extends Effect {
     public Heal(Unit activator, Unit target, int damage, int heal) {
         super(activator, target, 0, 0);
     }

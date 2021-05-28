@@ -3,9 +3,8 @@ package Skills;
 import java.util.List;
 import Entities.Troop;
 import Units.Unit;
-import Utils.Writer;
 
-public class BasicAttack extends SkillBase {
+public class BasicAttack extends Skill {
     public BasicAttack() {
         super(0, 1, 0, 0);
     }
@@ -18,16 +17,20 @@ public class BasicAttack extends SkillBase {
     @Override
     public void perform(Unit activeUnit, Troop activeTroop, Troop oppositeTroop) {
         List<Unit> targets = activeUnit.selectTargets(numTarget, oppositeTroop.getUnits());
-
-        Writer.writePerformMessage(this, activeUnit, targets);
-
+        printPerformMessage(activeUnit, targets);
         Unit targetUnit = targets.get(0);
-        Writer.writeDamage(totalDamage(activeUnit) + activeUnit.getStrength(), activeUnit, targetUnit);
-        targetUnit.decreaseHp(totalDamage(activeUnit) + activeUnit.getStrength());
+        printDamageMessage(getDamage() + activeUnit.getStrength(), activeUnit, targetUnit);
+        targetUnit.decreaseHp(getDamage() + activeUnit.getStrength());
     }
 
     @Override
     public String toString() {
         return "Basic Attack";
+    }
+
+    @Override
+    protected void printPerformMessage(Unit activeUnit, List<Unit> targets) {
+        Unit target = targets.get(0);
+        System.out.printf("%s attacks %s.\n", activeUnit.getName(), target.getName());
     }
 }

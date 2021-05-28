@@ -3,11 +3,10 @@ package Skills;
 import java.util.List;
 import Entities.Troop;
 import Units.Unit;
-import Effects.EffectBase;
+import Effects.Effect;
 import Effects.Heal;
-import Utils.Writer;
 
-public class Curse extends SkillBase {
+public class Curse extends Skill {
     public Curse() {
         super(100, 1, 0, 0);
     }
@@ -17,8 +16,8 @@ public class Curse extends SkillBase {
         return new Curse();
     }
 
-    private boolean hasExist(List<EffectBase> effects, Unit target) {
-        for (EffectBase effect : effects) {
+    private boolean hasExist(List<Effect> effects, Unit target) {
+        for (Effect effect : effects) {
             if (effect.getTarget() == target && effect.toString().equals("Heal")) {
                 return true;
             }
@@ -33,7 +32,7 @@ public class Curse extends SkillBase {
 
         List<Unit> targets = activeUnit.selectTargets(numTarget, oppositeTroop.getUnits());
 
-        Writer.writePerformMessage(this, activeUnit, targets);
+        printPerformMessage(activeUnit, targets);
 
         Unit target = targets.get(0);
         if (!hasExist(target.getDeathEffect(), target)) {

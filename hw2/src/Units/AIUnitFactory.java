@@ -1,7 +1,7 @@
 package Units;
 
 import java.util.List;
-import Skills.SkillBase;
+import Skills.Skill;
 import tw.waterball.foop.hw2.provided.AI;
 
 public class AIUnitFactory extends UnitFactory {
@@ -12,7 +12,7 @@ public class AIUnitFactory extends UnitFactory {
     }
 
     @Override
-    public Unit create(int healthPoint, int magicPoint, int strength, String name, List<SkillBase> skills) {
+    public Unit create(int healthPoint, int magicPoint, int strength, String name, List<Skill> skills) {
         return new AIUnit(healthPoint, magicPoint, strength, name, skills, ai);
     }
 }

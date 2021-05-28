@@ -2,7 +2,7 @@ package States;
 
 import Units.Unit;
 
-public class Normal extends StateBase {
+public class Normal extends State {
     public Normal(Unit target) {
         super(target);
     }

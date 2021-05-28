@@ -2,7 +2,7 @@ package States;
 
 import Units.Unit;
 
-public class Poisoned extends StateBase {
+public class Poisoned extends State {
     public Poisoned(Unit target) {
         super(target);
     }

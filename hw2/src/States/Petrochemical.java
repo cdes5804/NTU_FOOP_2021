@@ -2,7 +2,7 @@ package States;
 
 import Units.Unit;
 
-public class Petrochemical extends StateBase {
+public class Petrochemical extends State {
     public Petrochemical(Unit target) {
         super(target);
     }

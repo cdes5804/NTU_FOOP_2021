@@ -3,7 +3,6 @@ package Skills;
 import java.util.List;
 import Entities.Troop;
 import Units.Unit;
-import Utils.Writer;
 import tw.waterball.foop.hw2.provided.OnePunch;
 import tw.waterball.foop.hw2.provided.Target;
 
@@ -24,7 +23,7 @@ class PunchAccepter implements Target {
     }
 }
 
-public class Punch extends SkillBase {
+public class Punch extends Skill {
     public Punch() {
         super(180, 1, 0, 0);
     }
@@ -42,13 +41,13 @@ public class Punch extends SkillBase {
 
         List<Unit> targets = activeUnit.selectTargets(numTarget, oppositeTroop.getUnits());
 
-        Writer.writePerformMessage(this, activeUnit, targets);
+        printPerformMessage(activeUnit, targets);
 
         Unit target = targets.get(0);
         onePunch.perform(accepter);
-        int totalDamage = totalDamage(activeUnit) + accepter.getPunchDamage();
+        int totalDamage = getDamage() + accepter.getPunchDamage();
 
-        Writer.writeDamage(totalDamage, activeUnit, target);
+        printDamageMessage(totalDamage, activeUnit, target);
         target.decreaseHp(totalDamage);
     }
 

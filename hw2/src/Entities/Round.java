@@ -1,7 +1,6 @@
 package Entities;
 
 import Units.Unit;
-import Utils.Writer;
 
 public class Round {
     Troop troopOne;
@@ -13,7 +12,7 @@ public class Round {
     }
 
     private boolean isRoundOver() {
-        return troopOne.isAnnihilated() || troopTwo.isAnnihilated();
+        return troopTwo.isAnnihilated() || !troopOne.getUnits().get(0).isAlive();
     }
 
     private void updateUnitsState(Troop troop) {
@@ -27,7 +26,9 @@ public class Round {
             return;
         }
 
-        Writer.writeTurn(activeUnit);
+        System.out.printf("%s's turn (HP: %d, MP: %d, STR: %d, State: %s).\n",
+                            activeUnit.getName(), activeUnit.getHp(), activeUnit.getMp(),
+                            activeUnit.getStrength(), activeUnit.getState().toString());
 
         activeUnit.getState().takeEffect();
 

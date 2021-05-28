@@ -1,9 +1,9 @@
 package Units;
 
 import java.util.List;
-import Skills.SkillBase;
+import Skills.Skill;
 
 public interface Action {
-    public SkillBase selectAction();
+    public Skill selectAction();
     public List<Unit> selectTargets(int numTarget, List<Unit> candidates);
 }

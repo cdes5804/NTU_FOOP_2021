@@ -1,38 +1,32 @@
 package Entities;
 
-import java.util.List;
-import Skills.SkillBase;
-import Units.UnitFactory;
-import Utils.Utils;
-import Utils.Writer;
-
 public class RPG {
     Troop troopOne;
     Troop troopTwo;
     
-    public RPG(List<SkillBase> allowedSkills, UnitFactory factory) {
-        troopOne = Utils.getTroop(allowedSkills, "[1]", factory);
-        troopTwo = Utils.getTroop(allowedSkills, "[2]", factory);
+    public RPG(Troop troopOne, Troop troopTwo) {
+        this.troopOne = troopOne;
+        this.troopTwo = troopTwo;
     }
 
     public void start() {
-        while (isTroopAlive()) {
+        while (!isGameOver()) {
             Round round = new Round(troopOne, troopTwo);
             round.start();
         }
 
         if (isVictory()) {
-            Writer.writeWin();
+            System.out.println("You win.");
         } else {
-            Writer.writeLose();
+            System.out.println("You lose.");
         }
     }
 
     private boolean isVictory()  {
-        return !troopOne.isAnnihilated();
+        return troopOne.getUnits().get(0).isAlive();
     }
 
-    private boolean isTroopAlive() {
-        return !troopOne.isAnnihilated() && !troopTwo.isAnnihilated();
+    private boolean isGameOver() {
+        return troopTwo.isAnnihilated() || !troopOne.getUnits().get(0).isAlive();
     }
 }
