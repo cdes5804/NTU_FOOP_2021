@@ -8,4 +8,8 @@ import java.util.Scanner;
  */
 public final class Inputs {
     public final static Scanner in = new Scanner(System.in);
+
+    public final static String readCommand() {
+        return in.nextLine().trim();
+    }
 }
