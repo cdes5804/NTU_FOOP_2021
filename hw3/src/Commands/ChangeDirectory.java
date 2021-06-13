@@ -19,17 +19,17 @@ public class ChangeDirectory extends Command {
                 throw new Exception(parameters.get(0) + " does not exist within the current directory");
             }
 
-            Node linkNode = currentDirectory.getChildNodes().get(index);
-            if (linkNode.getEntityPath() == null) {
+            Node targetNode = currentDirectory.getChildNodes().get(index);
+            if (targetNode.getEntityPath() == null) {
                 throw new Exception(parameters.get(0) + " is not a directory");
             }
 
-            Node targetNode = fileSystem.getNodeByPath(linkNode.getEntityPath());
-            if (targetNode == null) {
-                throw new Exception(linkNode.getEntityPath() + " is not found");
+            Node destinationNode = fileSystem.getNodeByPath(targetNode.getEntityPath());
+            if (destinationNode == null) {
+                throw new Exception(targetNode.getEntityPath() + " is not found");
             }
 
-            cli.setCurrentWorkingDirectory(targetNode);
+            cli.setCurrentWorkingDirectory(destinationNode);
         }
     }
 
